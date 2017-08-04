@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace WineTrip
 
         public static void VerifyAdress(Event evnt)
         {
-            const string apiKey = "AIzaSyA0GOe0yRcs2pospZQV096sqg15BJO7AZ4";            
+            string apiKey = ConfigurationManager.AppSettings["VerifyAdressKey"];            
             string url = $"https://maps.googleapis.com/maps/api/geocode/xml?address={evnt.address}&key={apiKey}";
             XmlDocument doc = FetchXMLData(url);
             evnt.locationStatus = doc.SelectSingleNode("GeocodeResponse/status").InnerText;
@@ -96,18 +97,18 @@ namespace WineTrip
 
         public static void GetSingleEventMap(Event evnt)
         {
-            const string apiKey = "AIzaSyCr8AkfP2MYU1JKTXPLlm5YH2UlU5NERZo";
+            string apiKey = ConfigurationManager.AppSettings["GetSingleEventMap"]; ;
             string url = $"https://maps.googleapis.com/maps/api/staticmap?size=800x600&maptype=roadmap&markers=color:blue|label:S|{evnt.GPSLocation}&key={apiKey}";
             evnt.map = FetchPNGImage(url);
         }
 
         public static void GetTransferMap(Transfer transfer)
         {
-            const string apiKeyDirections = "AIzaSyBeQ1AFMPpVDc2IlGJxWyw8FR2fAg4yPxU";
+            string apiKeyDirections = ConfigurationManager.AppSettings["GetTransferMap"];
             string url = $"https://maps.googleapis.com/maps/api/directions/xml?origin={transfer.startEvent.GPSLocation}&destination={transfer.endEvent.GPSLocation}&mode=driving&key={apiKeyDirections}";
             XmlDocument doc = FetchXMLData(url);
             string encodedPolyLine = doc.SelectSingleNode("DirectionsResponse/route/overview_polyline/points").InnerText;
-            const string apiKeyStaticMap = "AIzaSyCr8AkfP2MYU1JKTXPLlm5YH2UlU5NERZo";
+             string apiKeyStaticMap = ConfigurationManager.AppSettings["GetSingleEventMap"];
             url = $"https://maps.googleapis.com/maps/api/staticmap?size=800x600&maptype=roadmap&markers=color:blue|label:B|{transfer.startEvent.GPSLocation}&markers=color:blue|label:T|{transfer.endEvent.GPSLocation}&path=enc%3A{encodedPolyLine}&key={apiKeyStaticMap}";
             transfer.map = FetchPNGImage(url);
         }
