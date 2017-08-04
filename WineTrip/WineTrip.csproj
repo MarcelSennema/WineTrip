@@ -62,6 +62,11 @@
     <Compile Include="OrderDataGridForm.Designer.cs">
       <DependentUpon>OrderDataGridForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Private.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Private.Config</DependentUpon>
+    </Compile>
     <Compile Include="RoundButton.cs" />
     <Compile Include="SelectedEvent.cs" />
     <Compile Include="Time.cs" />
@@ -134,6 +139,10 @@
     <EmbeddedResource Include="UserHeaderControl.resx">
       <DependentUpon>UserHeaderControl.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Private.Config">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Private.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Properties\DataSources\WineTrip.DataModel.Event.datasource" />
     <None Include="Properties\DataSources\WineTrip.DataModel.Trip.datasource" />
     <None Include="Properties\Settings.settings">
