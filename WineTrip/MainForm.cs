@@ -25,6 +25,7 @@ namespace WineTrip
         public MainForm()
         {
             InitializeComponent();
+            Icon = Properties.Resources.logo;
             toolStrip.CausesValidation = true;
             tripBindingSource.DataSource = trip;
             InitCalenderTab();
@@ -198,7 +199,7 @@ namespace WineTrip
         private void buttonOrder_Click(object sender, EventArgs e)
         {
 
-            OrderForm orderForm = new OrderForm(SelectedEvent.selectedEvent, trip.members);
+            OrderForm orderForm = new OrderForm(trip, SelectedEvent.selectedEvent);
 
             orderForm.Show();
         }

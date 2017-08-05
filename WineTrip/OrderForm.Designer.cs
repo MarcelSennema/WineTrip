@@ -34,10 +34,11 @@
             this.splitContainerColumnHeader = new System.Windows.Forms.SplitContainer();
             this.columnHeaderLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.columnHeaderFillerPanel = new System.Windows.Forms.Panel();
+            this.buttonCreatePDF = new System.Windows.Forms.Button();
             this.showPriceCheckBox = new System.Windows.Forms.CheckBox();
             this.bodySplitContainer = new System.Windows.Forms.SplitContainer();
-            this.columnFooterFillerPanel = new System.Windows.Forms.Panel();
             this.columnFooterLayoutPanel = new System.Windows.Forms.Panel();
+            this.columnFooterFillerPanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.rowHeaderSplitContainer)).BeginInit();
             this.rowHeaderSplitContainer.Panel1.SuspendLayout();
@@ -134,12 +135,23 @@
             // 
             // columnHeaderFillerPanel
             // 
+            this.columnHeaderFillerPanel.Controls.Add(this.buttonCreatePDF);
             this.columnHeaderFillerPanel.Controls.Add(this.showPriceCheckBox);
             this.columnHeaderFillerPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.columnHeaderFillerPanel.Location = new System.Drawing.Point(0, 0);
             this.columnHeaderFillerPanel.Name = "columnHeaderFillerPanel";
             this.columnHeaderFillerPanel.Size = new System.Drawing.Size(389, 51);
             this.columnHeaderFillerPanel.TabIndex = 0;
+            // 
+            // buttonCreatePDF
+            // 
+            this.buttonCreatePDF.Location = new System.Drawing.Point(99, 4);
+            this.buttonCreatePDF.Name = "buttonCreatePDF";
+            this.buttonCreatePDF.Size = new System.Drawing.Size(106, 47);
+            this.buttonCreatePDF.TabIndex = 1;
+            this.buttonCreatePDF.Text = "Create PDF";
+            this.buttonCreatePDF.UseVisualStyleBackColor = true;
+            this.buttonCreatePDF.Click += new System.EventHandler(this.buttonCreatePDF_Click);
             // 
             // showPriceCheckBox
             // 
@@ -174,15 +186,6 @@
             this.bodySplitContainer.SplitterDistance = 621;
             this.bodySplitContainer.TabIndex = 0;
             // 
-            // columnFooterFillerPanel
-            // 
-            this.columnFooterFillerPanel.Controls.Add(this.label1);
-            this.columnFooterFillerPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.columnFooterFillerPanel.Location = new System.Drawing.Point(0, 0);
-            this.columnFooterFillerPanel.Name = "columnFooterFillerPanel";
-            this.columnFooterFillerPanel.Size = new System.Drawing.Size(389, 51);
-            this.columnFooterFillerPanel.TabIndex = 1;
-            // 
             // columnFooterLayoutPanel
             // 
             this.columnFooterLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -192,6 +195,15 @@
             this.columnFooterLayoutPanel.TabIndex = 2;
             this.columnFooterLayoutPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.columnFooterLayoutPanel_Paint);
             // 
+            // columnFooterFillerPanel
+            // 
+            this.columnFooterFillerPanel.Controls.Add(this.label1);
+            this.columnFooterFillerPanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.columnFooterFillerPanel.Location = new System.Drawing.Point(0, 0);
+            this.columnFooterFillerPanel.Name = "columnFooterFillerPanel";
+            this.columnFooterFillerPanel.Size = new System.Drawing.Size(389, 51);
+            this.columnFooterFillerPanel.TabIndex = 1;
+            // 
             // label1
             // 
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -200,7 +212,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(389, 51);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Totaal";
+            this.label1.Text = "Total";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // OrderForm
@@ -244,5 +256,6 @@
         private System.Windows.Forms.Panel columnFooterLayoutPanel;
         private System.Windows.Forms.Panel columnFooterFillerPanel;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonCreatePDF;
     }
 }

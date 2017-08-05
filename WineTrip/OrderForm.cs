@@ -43,17 +43,18 @@ namespace WineTrip
         private List<RoundButton> focusButtons = new List<RoundButton>();
 
         private Event evnt;
-        private ObservableCollection<Member> members;
+        private Trip trip;
 
         private TotalHeaderControl totalHeaderControl;
         private UserHeaderControl currentColumn = null;
         private BottleRowHeaderControl currentRow = null;
 
-        public OrderForm(Event evnt, ObservableCollection<Member> members)
+        public OrderForm(Trip trip, Event evnt)
         {
+            this.trip = trip;
             this.evnt = evnt;
-            this.members = members;
             InitializeComponent();
+            Icon = Properties.Resources.logo;
             Text = evnt.name;
             CreateMemberHeaders();
             CreateGrid();
@@ -76,9 +77,9 @@ namespace WineTrip
             columnHeaderLayoutPanel.ColumnStyles[0] = new ColumnStyle(SizeType.Absolute, buttonSize / 2);
             filler.Dock = DockStyle.Fill;
             columnHeaderLayoutPanel.ColumnCount++;
-            if (members.Count > 0)
+            if (trip.members.Count > 0)
             {
-                foreach (Member member in members)
+                foreach (Member member in trip.members)
                 {
                     columnHeaderLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
                     UserHeaderControl userHeaderControl = new UserHeaderControl(member);
@@ -369,16 +370,30 @@ namespace WineTrip
 
         private void columnFooterLayoutPanel_Paint(object sender, PaintEventArgs e)
         {
-            foreach (Member member in members)
+            Rectangle? rect;
+            int count;
+            decimal price;
+
+            foreach (Member member in trip.members)
             {
-                Rectangle? rect = GetTotalRowPosition(member);
+                rect = GetTotalRowPosition(member);
                 if (rect != null)
                 {
-                    int count = evnt.bottles.SelectMany(x => x.orders).Where(y => y.member == member).Sum(z => z.count);
-                    decimal price = evnt.bottles.Select(x => x.price * x.orders.Where(o => o.member == member).Sum(c => c.count)).Sum(p => p);
+                    count = evnt.bottles.SelectMany(x => x.orders).Where(y => y.member == member).Sum(z => z.count);
+                    price = evnt.bottles.Select(x => x.price * x.orders.Where(o => o.member == member).Sum(c => c.count)).Sum(p => p);
                     DrawCountAndPrice(e, count, price, rect);
                 }
             }
+            rect = new Rectangle(totalHeaderControl.Left, 0, totalHeaderControl.Width, columnFooterLayoutPanel.Height);
+            count = evnt.bottles.SelectMany(x => x.orders).Sum(z => z.count);
+            price = evnt.bottles.Select(x => x.price * x.orders.Sum(c => c.count)).Sum(p => p);
+            DrawCountAndPrice(e, count, price, rect);
+        }
+
+        private void buttonCreatePDF_Click(object sender, EventArgs e)
+        {
+            OrderPDF orderPDF = new OrderPDF();
+            orderPDF.Create(trip, evnt);
         }
     }
 }
