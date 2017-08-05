@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -20,7 +21,7 @@ namespace WineTrip
     public partial class MainForm : Form
     {
         private Trip trip = new Trip();
-        private string filename;
+        private string filename = null;
 
         public MainForm()
         {
@@ -56,9 +57,12 @@ namespace WineTrip
         {
             var serializer = new DataContractSerializer(typeof(Trip));
             using (FileStream stream = File.OpenRead(filePath))
-            {
                 trip = (Trip)serializer.ReadObject(stream);
-            }
+
+            // to hanlde project files that do not yet contain payment information we must initilise the payment list.
+            foreach(Event evnt in trip.events)
+                if(evnt.payments == null)
+                    evnt.payments = new ObservableCollection<Payment>();
             tripBindingSource.DataSource = trip;
             InitCalenderTab();
         }
@@ -85,14 +89,35 @@ namespace WineTrip
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(saveFileDialog.ShowDialog() == DialogResult.OK)
+            Validate();
+            if (filename == null)
             {
-                Validate();
+                if(saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    filename = saveFileDialog.FileName;
+                    SaveModel(filename);
+                    toolStripFileName.Text = filename;
+                }
+            }
+            else
+            {
+                SaveModel(filename);
+                toolStripFileName.Text = filename;
+            }
+        }
+
+        private void toolStripButtonSaveAs_Click(object sender, EventArgs e)
+        {
+            if (filename != null)
+                saveFileDialog.FileName = filename;
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
                 filename = saveFileDialog.FileName;
                 SaveModel(filename);
                 toolStripFileName.Text = filename;
             }
         }
+
 
         private void textBoxNumberOfDays_Validated(object sender, EventArgs e)
         {
@@ -203,5 +228,6 @@ namespace WineTrip
 
             orderForm.Show();
         }
+
     }
 }

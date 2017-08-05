@@ -19,7 +19,6 @@ namespace WineTrip.DataModel
             this.start = start;
             if (trip != null)
                 trip.events.Add(this);
-
         }
 
         [DataMember]
@@ -44,9 +43,11 @@ namespace WineTrip.DataModel
         [DataMember]
         public string locationStatus { get; set; } = "Not verified";
         [DataMember]
-        public Bitmap map { get; set; } 
+        public Bitmap map { get; set; }
         [DataMember]
         public ObservableCollection<Bottle> bottles { get; set; } = new ObservableCollection<Bottle>();
+        [DataMember]
+        public ObservableCollection<Payment> payments { get; set; } = new ObservableCollection<Payment>();
 
         public int day { get { return start.day; } set { start.day = (byte)value; } }
 
@@ -70,5 +71,16 @@ namespace WineTrip.DataModel
         {
             return (Event) MemberwiseClone();
         }
+
+        public int TotalBottleCount(Member member)
+        {
+            return bottles.SelectMany(x => x.orders).Where(y => member == null || y.member == member).Sum(z => z.count);
+        }
+
+        public decimal TotalPrice(Member member)
+        {
+            return bottles.Select(x => x.price * x.orders.Where(o => member == null || o.member == member).Sum(c => c.count)).Sum(p => p);
+        }
+
     }
 }

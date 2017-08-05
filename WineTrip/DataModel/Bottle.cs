@@ -24,5 +24,22 @@ namespace WineTrip.DataModel
         [DataMember]
         public ObservableCollection<Order> orders { get; set; } = new ObservableCollection<Order>();
 
+        public int TotalOrderCount
+        {
+            get
+            {
+                return orders.Sum(x => x.count);
+            }
+        }
+
+        public decimal TotalOrderPrice
+        {
+            get
+            {
+                return orders.Sum(x => x.count) * price;
+            }
+        }
+
+
     }
 }

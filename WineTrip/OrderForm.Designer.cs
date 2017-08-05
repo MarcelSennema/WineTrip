@@ -40,6 +40,7 @@
             this.columnFooterLayoutPanel = new System.Windows.Forms.Panel();
             this.columnFooterFillerPanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.buttonPayments = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.rowHeaderSplitContainer)).BeginInit();
             this.rowHeaderSplitContainer.Panel1.SuspendLayout();
             this.rowHeaderSplitContainer.Panel2.SuspendLayout();
@@ -135,6 +136,7 @@
             // 
             // columnHeaderFillerPanel
             // 
+            this.columnHeaderFillerPanel.Controls.Add(this.buttonPayments);
             this.columnHeaderFillerPanel.Controls.Add(this.buttonCreatePDF);
             this.columnHeaderFillerPanel.Controls.Add(this.showPriceCheckBox);
             this.columnHeaderFillerPanel.Dock = System.Windows.Forms.DockStyle.Left;
@@ -215,6 +217,16 @@
             this.label1.Text = "Total";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // buttonPayments
+            // 
+            this.buttonPayments.Location = new System.Drawing.Point(211, 4);
+            this.buttonPayments.Name = "buttonPayments";
+            this.buttonPayments.Size = new System.Drawing.Size(106, 47);
+            this.buttonPayments.TabIndex = 2;
+            this.buttonPayments.Text = "Payments";
+            this.buttonPayments.UseVisualStyleBackColor = true;
+            this.buttonPayments.Click += new System.EventHandler(this.buttonPayments_Click);
+            // 
             // OrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -257,5 +269,6 @@
         private System.Windows.Forms.Panel columnFooterFillerPanel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonCreatePDF;
+        private System.Windows.Forms.Button buttonPayments;
     }
 }

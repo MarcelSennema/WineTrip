@@ -129,7 +129,7 @@ namespace WineTrip
 
         private void DeleteBottle(BottleRowHeaderControl bottleControl)
         {
-            if (evnt.bottles.Contains(bottleControl.bottle)) // should alway be there..
+            if (evnt.bottles.Contains(bottleControl.bottle)) // should always be there..
                 evnt.bottles.Remove(bottleControl.bottle);
             CreateGrid();
         }
@@ -155,17 +155,12 @@ namespace WineTrip
             {
                 Rectangle? rect = GetTotalColumnPosition(bottle);
                 if (rect != null)
-                {
-                    int count = bottle.orders.Sum(x => x.count);
-                    DrawCountAndPrice(e, count, count * bottle.price, rect);
-                }
+                     DrawCountAndPrice(e, bottle.TotalOrderCount, bottle.TotalOrderPrice, rect);
                 foreach (Order order in bottle.orders)
                 {
                     rect = GetOrderPosition(bottle, order);
                     if (rect != null)
-                    {
                         DrawCountAndPrice(e, order.count, order.count * bottle.price, rect);
-                    }
                 }
             }
             // draw the buttons for the focused cell
@@ -371,29 +366,27 @@ namespace WineTrip
         private void columnFooterLayoutPanel_Paint(object sender, PaintEventArgs e)
         {
             Rectangle? rect;
-            int count;
-            decimal price;
 
             foreach (Member member in trip.members)
             {
                 rect = GetTotalRowPosition(member);
                 if (rect != null)
-                {
-                    count = evnt.bottles.SelectMany(x => x.orders).Where(y => y.member == member).Sum(z => z.count);
-                    price = evnt.bottles.Select(x => x.price * x.orders.Where(o => o.member == member).Sum(c => c.count)).Sum(p => p);
-                    DrawCountAndPrice(e, count, price, rect);
-                }
+                    DrawCountAndPrice(e, evnt.TotalBottleCount(member), evnt.TotalPrice(member), rect);
             }
             rect = new Rectangle(totalHeaderControl.Left, 0, totalHeaderControl.Width, columnFooterLayoutPanel.Height);
-            count = evnt.bottles.SelectMany(x => x.orders).Sum(z => z.count);
-            price = evnt.bottles.Select(x => x.price * x.orders.Sum(c => c.count)).Sum(p => p);
-            DrawCountAndPrice(e, count, price, rect);
+            DrawCountAndPrice(e, evnt.TotalBottleCount(null), evnt.TotalPrice(null), rect);
         }
 
         private void buttonCreatePDF_Click(object sender, EventArgs e)
         {
             OrderPDF orderPDF = new OrderPDF();
             orderPDF.Create(trip, evnt);
+        }
+
+        private void buttonPayments_Click(object sender, EventArgs e)
+        {
+            PaymentForm paymentForm = new PaymentForm(trip,  evnt);
+            paymentForm.ShowDialog();
         }
     }
 }

@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tripBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripFileName = new System.Windows.Forms.ToolStripStatusLabel();
@@ -42,13 +43,24 @@
             this.calenderTabControl = new System.Windows.Forms.TabControl();
             this.detailsPanel = new System.Windows.Forms.Panel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.buttonOrder = new System.Windows.Forms.Button();
+            this.buttonVisitWebSite = new System.Windows.Forms.Button();
+            this.textBoxWebSite = new System.Windows.Forms.TextBox();
+            this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label12 = new System.Windows.Forms.Label();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
-            this.textboxDuration = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.textboxDescription = new System.Windows.Forms.RichTextBox();
             this.textBoxName = new System.Windows.Forms.TextBox();
+            this.textboxDuration = new System.Windows.Forms.TextBox();
+            this.textboxDescription = new System.Windows.Forms.RichTextBox();
+            this.textBoxAddress = new System.Windows.Forms.TextBox();
+            this.textBoxEmail = new System.Windows.Forms.TextBox();
+            this.textBoxGPSLocation = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.mapTabControl = new System.Windows.Forms.TabControl();
             this.localMap = new System.Windows.Forms.TabPage();
@@ -60,15 +72,13 @@
             this.toMap = new System.Windows.Forms.TabPage();
             this.distanceLabelTo = new System.Windows.Forms.Label();
             this.pictureBoxTransFerTo = new System.Windows.Forms.PictureBox();
-            this.textBoxAddress = new System.Windows.Forms.TextBox();
-            this.textBoxGPSLocation = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBoxEmail = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dataGridViewMembers = new System.Windows.Forms.DataGridView();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.phoneNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.membersBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxNumberOfDays = new System.Windows.Forms.TextBox();
@@ -77,17 +87,9 @@
             this.toolStripButtonSave = new System.Windows.Forms.ToolStripButton();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonCalculate = new System.Windows.Forms.ToolStripButton();
-            this.label12 = new System.Windows.Forms.Label();
-            this.textBoxWebSite = new System.Windows.Forms.TextBox();
-            this.buttonVisitWebSite = new System.Windows.Forms.Button();
-            this.buttonOrder = new System.Windows.Forms.Button();
-            this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phoneNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.membersBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.tripBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.membersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.toolStripButtonSaveAs = new System.Windows.Forms.ToolStripButton();
+            ((System.ComponentModel.ISupportInitialize)(this.tripBindingSource)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -100,6 +102,7 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).BeginInit();
             this.panel2.SuspendLayout();
             this.mapTabControl.SuspendLayout();
             this.localMap.SuspendLayout();
@@ -109,10 +112,8 @@
             this.toMap.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTransFerTo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMembers)).BeginInit();
-            this.toolStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.membersBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tripBindingSource)).BeginInit();
+            this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.membersBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -123,6 +124,10 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(364, 20);
             this.textBox1.TabIndex = 0;
+            // 
+            // tripBindingSource
+            // 
+            this.tripBindingSource.DataSource = typeof(WineTrip.DataModel.Trip);
             // 
             // label1
             // 
@@ -271,6 +276,50 @@
             this.splitContainer2.SplitterDistance = 322;
             this.splitContainer2.TabIndex = 6;
             // 
+            // buttonOrder
+            // 
+            this.buttonOrder.Location = new System.Drawing.Point(9, 284);
+            this.buttonOrder.Name = "buttonOrder";
+            this.buttonOrder.Size = new System.Drawing.Size(77, 36);
+            this.buttonOrder.TabIndex = 14;
+            this.buttonOrder.Text = "Order";
+            this.buttonOrder.UseVisualStyleBackColor = true;
+            this.buttonOrder.Click += new System.EventHandler(this.buttonOrder_Click);
+            // 
+            // buttonVisitWebSite
+            // 
+            this.buttonVisitWebSite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonVisitWebSite.Location = new System.Drawing.Point(467, 99);
+            this.buttonVisitWebSite.Name = "buttonVisitWebSite";
+            this.buttonVisitWebSite.Size = new System.Drawing.Size(77, 20);
+            this.buttonVisitWebSite.TabIndex = 13;
+            this.buttonVisitWebSite.Text = "Visit";
+            this.buttonVisitWebSite.UseVisualStyleBackColor = true;
+            this.buttonVisitWebSite.Click += new System.EventHandler(this.buttonVisitWebSite_Click);
+            // 
+            // textBoxWebSite
+            // 
+            this.textBoxWebSite.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxWebSite.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.eventBindingSource, "webSite", true));
+            this.textBoxWebSite.Location = new System.Drawing.Point(91, 99);
+            this.textBoxWebSite.Name = "textBoxWebSite";
+            this.textBoxWebSite.Size = new System.Drawing.Size(369, 20);
+            this.textBoxWebSite.TabIndex = 12;
+            // 
+            // eventBindingSource
+            // 
+            this.eventBindingSource.DataSource = typeof(WineTrip.DataModel.Event);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 100);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(49, 13);
+            this.label12.TabIndex = 11;
+            this.label12.Text = "Web site";
+            // 
             // buttonDelete
             // 
             this.buttonDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -291,17 +340,6 @@
             this.label10.TabIndex = 2;
             this.label10.Text = "Label";
             // 
-            // textboxDuration
-            // 
-            this.textboxDuration.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textboxDuration.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.eventBindingSource, "duration", true));
-            this.textboxDuration.Location = new System.Drawing.Point(91, 30);
-            this.textboxDuration.Name = "textboxDuration";
-            this.textboxDuration.Size = new System.Drawing.Size(110, 20);
-            this.textboxDuration.TabIndex = 1;
-            this.textboxDuration.Validated += new System.EventHandler(this.generic_Validated);
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -320,6 +358,28 @@
             this.label11.TabIndex = 5;
             this.label11.Text = "Duration";
             // 
+            // textBoxName
+            // 
+            this.textBoxName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.eventBindingSource, "name", true));
+            this.textBoxName.Location = new System.Drawing.Point(91, 4);
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.Size = new System.Drawing.Size(369, 20);
+            this.textBoxName.TabIndex = 0;
+            this.textBoxName.Validated += new System.EventHandler(this.generic_Validated);
+            // 
+            // textboxDuration
+            // 
+            this.textboxDuration.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textboxDuration.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.eventBindingSource, "duration", true));
+            this.textboxDuration.Location = new System.Drawing.Point(91, 30);
+            this.textboxDuration.Name = "textboxDuration";
+            this.textboxDuration.Size = new System.Drawing.Size(110, 20);
+            this.textboxDuration.TabIndex = 1;
+            this.textboxDuration.Validated += new System.EventHandler(this.generic_Validated);
+            // 
             // textboxDescription
             // 
             this.textboxDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -332,16 +392,65 @@
             this.textboxDescription.TabIndex = 2;
             this.textboxDescription.Text = "";
             // 
-            // textBoxName
+            // textBoxAddress
             // 
-            this.textBoxName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBoxAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.eventBindingSource, "name", true));
-            this.textBoxName.Location = new System.Drawing.Point(91, 4);
-            this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(369, 20);
-            this.textBoxName.TabIndex = 0;
-            this.textBoxName.Validated += new System.EventHandler(this.generic_Validated);
+            this.textBoxAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.eventBindingSource, "address", true));
+            this.textBoxAddress.Location = new System.Drawing.Point(91, 56);
+            this.textBoxAddress.Multiline = true;
+            this.textBoxAddress.Name = "textBoxAddress";
+            this.textBoxAddress.Size = new System.Drawing.Size(453, 36);
+            this.textBoxAddress.TabIndex = 0;
+            this.textBoxAddress.Validated += new System.EventHandler(this.generic_Validated);
+            // 
+            // textBoxEmail
+            // 
+            this.textBoxEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxEmail.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.eventBindingSource, "eMail", true));
+            this.textBoxEmail.Location = new System.Drawing.Point(91, 124);
+            this.textBoxEmail.Name = "textBoxEmail";
+            this.textBoxEmail.Size = new System.Drawing.Size(453, 20);
+            this.textBoxEmail.TabIndex = 1;
+            // 
+            // textBoxGPSLocation
+            // 
+            this.textBoxGPSLocation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxGPSLocation.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.eventBindingSource, "GPSLocation", true));
+            this.textBoxGPSLocation.Location = new System.Drawing.Point(90, 150);
+            this.textBoxGPSLocation.Name = "textBoxGPSLocation";
+            this.textBoxGPSLocation.ReadOnly = true;
+            this.textBoxGPSLocation.Size = new System.Drawing.Size(453, 20);
+            this.textBoxGPSLocation.TabIndex = 2;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 59);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(45, 13);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Address";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 153);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(69, 13);
+            this.label9.TabIndex = 6;
+            this.label9.Text = "GPS-location";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 127);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(32, 13);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "eMail";
             // 
             // panel2
             // 
@@ -470,66 +579,6 @@
             this.pictureBoxTransFerTo.TabIndex = 2;
             this.pictureBoxTransFerTo.TabStop = false;
             // 
-            // textBoxAddress
-            // 
-            this.textBoxAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.eventBindingSource, "address", true));
-            this.textBoxAddress.Location = new System.Drawing.Point(91, 56);
-            this.textBoxAddress.Multiline = true;
-            this.textBoxAddress.Name = "textBoxAddress";
-            this.textBoxAddress.Size = new System.Drawing.Size(453, 36);
-            this.textBoxAddress.TabIndex = 0;
-            this.textBoxAddress.Validated += new System.EventHandler(this.generic_Validated);
-            // 
-            // textBoxGPSLocation
-            // 
-            this.textBoxGPSLocation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxGPSLocation.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.eventBindingSource, "GPSLocation", true));
-            this.textBoxGPSLocation.Location = new System.Drawing.Point(90, 150);
-            this.textBoxGPSLocation.Name = "textBoxGPSLocation";
-            this.textBoxGPSLocation.ReadOnly = true;
-            this.textBoxGPSLocation.Size = new System.Drawing.Size(453, 20);
-            this.textBoxGPSLocation.TabIndex = 2;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 59);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(45, 13);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Address";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 153);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(69, 13);
-            this.label9.TabIndex = 6;
-            this.label9.Text = "GPS-location";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 127);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(32, 13);
-            this.label8.TabIndex = 4;
-            this.label8.Text = "eMail";
-            // 
-            // textBoxEmail
-            // 
-            this.textBoxEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxEmail.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.eventBindingSource, "eMail", true));
-            this.textBoxEmail.Location = new System.Drawing.Point(91, 124);
-            this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(453, 20);
-            this.textBoxEmail.TabIndex = 1;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -563,6 +612,30 @@
             this.dataGridViewMembers.Name = "dataGridViewMembers";
             this.dataGridViewMembers.Size = new System.Drawing.Size(452, 633);
             this.dataGridViewMembers.TabIndex = 3;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            // 
+            // phoneNumberDataGridViewTextBoxColumn
+            // 
+            this.phoneNumberDataGridViewTextBoxColumn.DataPropertyName = "PhoneNumber";
+            this.phoneNumberDataGridViewTextBoxColumn.HeaderText = "PhoneNumber";
+            this.phoneNumberDataGridViewTextBoxColumn.Name = "phoneNumberDataGridViewTextBoxColumn";
+            // 
+            // membersBindingSource1
+            // 
+            this.membersBindingSource1.DataMember = "members";
+            this.membersBindingSource1.DataSource = this.tripBindingSource;
             // 
             // dateTimePicker1
             // 
@@ -627,6 +700,7 @@
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonOpen,
             this.toolStripButtonSave,
+            this.toolStripButtonSaveAs,
             this.toolStripButtonCalculate});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
@@ -645,82 +719,21 @@
             this.toolStripButtonCalculate.ToolTipText = "Calculate driving distances and times";
             this.toolStripButtonCalculate.Click += new System.EventHandler(this.toolStripButtonCalculate_Click);
             // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 100);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(49, 13);
-            this.label12.TabIndex = 11;
-            this.label12.Text = "Web site";
-            // 
-            // textBoxWebSite
-            // 
-            this.textBoxWebSite.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxWebSite.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.eventBindingSource, "webSite", true));
-            this.textBoxWebSite.Location = new System.Drawing.Point(91, 99);
-            this.textBoxWebSite.Name = "textBoxWebSite";
-            this.textBoxWebSite.Size = new System.Drawing.Size(369, 20);
-            this.textBoxWebSite.TabIndex = 12;
-            // 
-            // buttonVisitWebSite
-            // 
-            this.buttonVisitWebSite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonVisitWebSite.Location = new System.Drawing.Point(467, 99);
-            this.buttonVisitWebSite.Name = "buttonVisitWebSite";
-            this.buttonVisitWebSite.Size = new System.Drawing.Size(77, 20);
-            this.buttonVisitWebSite.TabIndex = 13;
-            this.buttonVisitWebSite.Text = "Visit";
-            this.buttonVisitWebSite.UseVisualStyleBackColor = true;
-            this.buttonVisitWebSite.Click += new System.EventHandler(this.buttonVisitWebSite_Click);
-            // 
-            // buttonOrder
-            // 
-            this.buttonOrder.Location = new System.Drawing.Point(9, 284);
-            this.buttonOrder.Name = "buttonOrder";
-            this.buttonOrder.Size = new System.Drawing.Size(77, 36);
-            this.buttonOrder.TabIndex = 14;
-            this.buttonOrder.Text = "Order";
-            this.buttonOrder.UseVisualStyleBackColor = true;
-            this.buttonOrder.Click += new System.EventHandler(this.buttonOrder_Click);
-            // 
-            // eventBindingSource
-            // 
-            this.eventBindingSource.DataSource = typeof(WineTrip.DataModel.Event);
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            // 
-            // phoneNumberDataGridViewTextBoxColumn
-            // 
-            this.phoneNumberDataGridViewTextBoxColumn.DataPropertyName = "PhoneNumber";
-            this.phoneNumberDataGridViewTextBoxColumn.HeaderText = "PhoneNumber";
-            this.phoneNumberDataGridViewTextBoxColumn.Name = "phoneNumberDataGridViewTextBoxColumn";
-            // 
-            // membersBindingSource1
-            // 
-            this.membersBindingSource1.DataMember = "members";
-            this.membersBindingSource1.DataSource = this.tripBindingSource;
-            // 
-            // tripBindingSource
-            // 
-            this.tripBindingSource.DataSource = typeof(WineTrip.DataModel.Trip);
-            // 
             // membersBindingSource
             // 
             this.membersBindingSource.DataMember = "Members";
             this.membersBindingSource.DataSource = this.tripBindingSource;
+            // 
+            // toolStripButtonSaveAs
+            // 
+            this.toolStripButtonSaveAs.AutoSize = false;
+            this.toolStripButtonSaveAs.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonSaveAs.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSaveAs.Image")));
+            this.toolStripButtonSaveAs.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSaveAs.Name = "toolStripButtonSaveAs";
+            this.toolStripButtonSaveAs.Size = new System.Drawing.Size(47, 47);
+            this.toolStripButtonSaveAs.Text = "Save As";
+            this.toolStripButtonSaveAs.Click += new System.EventHandler(this.toolStripButtonSaveAs_Click);
             // 
             // MainForm
             // 
@@ -732,6 +745,7 @@
             this.Controls.Add(this.toolStrip);
             this.Name = "MainForm";
             this.Text = "Winetrip";
+            ((System.ComponentModel.ISupportInitialize)(this.tripBindingSource)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -747,6 +761,7 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).EndInit();
             this.panel2.ResumeLayout(false);
             this.mapTabControl.ResumeLayout(false);
             this.localMap.ResumeLayout(false);
@@ -758,11 +773,9 @@
             this.toMap.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTransFerTo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMembers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.membersBindingSource1)).EndInit();
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.membersBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tripBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.membersBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -829,6 +842,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button buttonVisitWebSite;
         private System.Windows.Forms.Button buttonOrder;
+        private System.Windows.Forms.ToolStripButton toolStripButtonSaveAs;
     }
 }
 
