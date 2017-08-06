@@ -40,7 +40,8 @@ namespace WineTrip
         14,
         FontStyle.Regular,
         GraphicsUnit.Pixel);
-        private List<RoundButton> focusButtons = new List<RoundButton>();
+
+        private List<RoundButton> orderFocusButtons = new List<RoundButton>();
 
         private Event evnt;
         private Trip trip;
@@ -51,6 +52,7 @@ namespace WineTrip
 
         public OrderForm(Trip trip, Event evnt)
         {
+            Cursor.Current = Cursors.WaitCursor;
             this.trip = trip;
             this.evnt = evnt;
             InitializeComponent();
@@ -62,14 +64,15 @@ namespace WineTrip
             BottleRowHeaderControl.deleteButtonClicked += DeleteBottle; // let us know when the text of any bottle changes
             // just to make sure we get the initial layout correct...
             columnHeaderFillerPanel.Width = rowHeaderLayoutPanel.Width + rowHeaderSplitContainer.SplitterWidth;
-            focusButtons.Add(new RoundButton(RoundButton.VerticalPostion.top, RoundButton.HorizontalPostition.left, "c", buttonEraseBrush, () => ClearOrder()));
-            focusButtons.Add(new RoundButton(RoundButton.VerticalPostion.top, RoundButton.HorizontalPostition.right, "+1", button1Brush, () => Add1BottlesToOrder()));
-            focusButtons.Add(new RoundButton(RoundButton.VerticalPostion.bottom, RoundButton.HorizontalPostition.right, "+6", button6Brush, () => Add6BottlesToOrder()));
+            orderFocusButtons.Add(new RoundButton(RoundButton.VerticalPostion.top, RoundButton.HorizontalPostition.left, "c", buttonEraseBrush, () => ClearOrder()));
+            orderFocusButtons.Add(new RoundButton(RoundButton.VerticalPostion.top, RoundButton.HorizontalPostition.right, "+1", button1Brush, () => Add1BottlesToOrder()));
+            orderFocusButtons.Add(new RoundButton(RoundButton.VerticalPostion.bottom, RoundButton.HorizontalPostition.right, "+6", button6Brush, () => Add6BottlesToOrder()));
         }
     
 
         private void CreateMemberHeaders()
         {
+            columnHeaderLayoutPanel.SuspendLayout();
             columnHeaderLayoutPanel.Controls.Clear();
             columnHeaderLayoutPanel.ColumnCount = 1;
             Panel filler = new Panel();
@@ -92,10 +95,12 @@ namespace WineTrip
                 columnHeaderLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
                 totalHeaderControl.Dock = DockStyle.Fill;
             }
+            columnHeaderLayoutPanel.ResumeLayout();
         }
 
         private void CreateGrid()
         {
+            rowHeaderLayoutPanel.SuspendLayout();
             rowHeaderLayoutPanel.Controls.Clear();
             rowHeaderLayoutPanel.RowCount = 1; // creates an empty grid
 
@@ -105,13 +110,14 @@ namespace WineTrip
                 rowHeaderLayoutPanel.RowCount++;
             }
             NewBottleRow(new Bottle(), false); // lastrow is empty
+            rowHeaderLayoutPanel.ResumeLayout();
         }
 
         private void NewBottleRow(Bottle bottle, bool canDelete = true)
         {
             BottleRowHeaderControl bottleControl = new BottleRowHeaderControl(bottle);
             rowHeaderLayoutPanel.Controls.Add(bottleControl);
-            bottleControl.Dock = DockStyle.Fill;
+            bottleControl.Dock = DockStyle.Top;
             bottleControl.canDelete = canDelete;
         }
 
@@ -167,7 +173,7 @@ namespace WineTrip
             if (currentRow != null && currentColumn != null)
             {
                 Rectangle rect = new Rectangle(currentColumn.Left, currentRow.Top, currentColumn.Width, currentRow.Height);
-                foreach(RoundButton button in focusButtons)
+                foreach(RoundButton button in orderFocusButtons)
                     button.Draw(rect, e.Graphics, buttonSize, buttonPen, buttonTextBrush, buttonFont);
             }
         }
@@ -278,9 +284,9 @@ namespace WineTrip
             {
                 bool buttonPressed = false;
                 int i = 0;
-                while(!buttonPressed && i < focusButtons.Count())
+                while(!buttonPressed && i < orderFocusButtons.Count())
                 {
-                    RoundButton button = focusButtons[i];
+                    RoundButton button = orderFocusButtons[i];
                     if(button.GetButtonRegion(new Rectangle(currentColumn.Left, currentRow.Top, currentColumn.Width, currentRow.Height), buttonSize).IsVisible(e.Location))
                     {
                         buttonPressed = true;
@@ -387,6 +393,11 @@ namespace WineTrip
         {
             PaymentForm paymentForm = new PaymentForm(trip,  evnt);
             paymentForm.ShowDialog();
+        }
+
+        private void OrderForm_Shown(object sender, EventArgs e)
+        {
+            Cursor.Current = Cursors.Default;
         }
     }
 }

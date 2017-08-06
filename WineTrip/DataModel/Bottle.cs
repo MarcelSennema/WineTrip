@@ -11,6 +11,7 @@ namespace WineTrip.DataModel
     [DataContract]
     public class Bottle
     {
+        public enum Wine {unspecified, white, rose, red }
         [DataMember]
         public string name { get; set; }
         [DataMember]
@@ -19,6 +20,12 @@ namespace WineTrip.DataModel
         public decimal volume { get; set; } = 0.75M;
         [DataMember]
         public decimal price { get; set; }
+        [DataMember]
+        public Wine wine { get; set; }
+        [DataMember]
+        public bool isSparklingWine { get; set; } = false;
+        [DataMember]
+        public bool isDesertWine { get; set; } = false;
         [DataMember]
         public string notitie { get; set; }
         [DataMember]

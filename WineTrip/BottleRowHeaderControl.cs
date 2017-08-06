@@ -21,8 +21,8 @@ namespace WineTrip
 
         public BottleRowHeaderControl(Bottle bottle)
         {
-           InitializeComponent();
-            SetTextboxHeight(null);
+            InitializeComponent();
+            // SetTextboxHeight(null);
             bottlesBindingSource.DataSource = bottle;
         }
 
@@ -46,7 +46,8 @@ namespace WineTrip
             {
                 h = this.ClientSize.Height - 10 - nameTextBox.Top;
             }
-            nameTextBox.Height = h;
+            if(nameTextBox.Height != h)
+                nameTextBox.Height = h;
         }
 
         public bool canDelete

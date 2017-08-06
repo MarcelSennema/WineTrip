@@ -34,13 +34,13 @@
             this.splitContainerColumnHeader = new System.Windows.Forms.SplitContainer();
             this.columnHeaderLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.columnHeaderFillerPanel = new System.Windows.Forms.Panel();
+            this.buttonPayments = new System.Windows.Forms.Button();
             this.buttonCreatePDF = new System.Windows.Forms.Button();
             this.showPriceCheckBox = new System.Windows.Forms.CheckBox();
             this.bodySplitContainer = new System.Windows.Forms.SplitContainer();
             this.columnFooterLayoutPanel = new System.Windows.Forms.Panel();
             this.columnFooterFillerPanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.buttonPayments = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.rowHeaderSplitContainer)).BeginInit();
             this.rowHeaderSplitContainer.Panel1.SuspendLayout();
             this.rowHeaderSplitContainer.Panel2.SuspendLayout();
@@ -145,6 +145,16 @@
             this.columnHeaderFillerPanel.Size = new System.Drawing.Size(389, 51);
             this.columnHeaderFillerPanel.TabIndex = 0;
             // 
+            // buttonPayments
+            // 
+            this.buttonPayments.Location = new System.Drawing.Point(211, 4);
+            this.buttonPayments.Name = "buttonPayments";
+            this.buttonPayments.Size = new System.Drawing.Size(106, 47);
+            this.buttonPayments.TabIndex = 2;
+            this.buttonPayments.Text = "Payments";
+            this.buttonPayments.UseVisualStyleBackColor = true;
+            this.buttonPayments.Click += new System.EventHandler(this.buttonPayments_Click);
+            // 
             // buttonCreatePDF
             // 
             this.buttonCreatePDF.Location = new System.Drawing.Point(99, 4);
@@ -217,16 +227,6 @@
             this.label1.Text = "Total";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // buttonPayments
-            // 
-            this.buttonPayments.Location = new System.Drawing.Point(211, 4);
-            this.buttonPayments.Name = "buttonPayments";
-            this.buttonPayments.Size = new System.Drawing.Size(106, 47);
-            this.buttonPayments.TabIndex = 2;
-            this.buttonPayments.Text = "Payments";
-            this.buttonPayments.UseVisualStyleBackColor = true;
-            this.buttonPayments.Click += new System.EventHandler(this.buttonPayments_Click);
-            // 
             // OrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -236,6 +236,7 @@
             this.DoubleBuffered = true;
             this.Name = "OrderForm";
             this.Text = "Order";
+            this.Shown += new System.EventHandler(this.OrderForm_Shown);
             this.rowHeaderSplitContainer.Panel1.ResumeLayout(false);
             this.rowHeaderSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.rowHeaderSplitContainer)).EndInit();
