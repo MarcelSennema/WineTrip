@@ -66,6 +66,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BottleOrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BottleOrderForm.Designer.cs">
+      <DependentUpon>BottleOrderForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataModel\Payment.cs" />
     <Compile Include="DataModel\Settings.cs" />
     <Compile Include="DataModel\Transfer.cs" />
@@ -135,6 +141,9 @@
     <Compile Include="UserHeaderControl.Designer.cs">
       <DependentUpon>UserHeaderControl.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BottleOrderForm.resx">
+      <DependentUpon>BottleOrderForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

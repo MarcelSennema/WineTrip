@@ -50,9 +50,10 @@ namespace WineTrip
             CalculateOverlappingEvents();
         }
 
+        private int rowHeight {  get { return Height / (trip.settings.endHour - trip.settings.startHour); } }
+
         private void CalenderControl_Paint(object sender, PaintEventArgs e)
         {
-            int rowHeight = Height / (trip.settings.endHour - trip.settings.startHour);
             int leftMargin = 50;
             int rightMargin = 10;
             int transferBlockWidth = Width - leftMargin;
@@ -188,6 +189,15 @@ namespace WineTrip
             }
         }
 
+        private void CalenderControl_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (SelectedEvent.selectedEvent != null && SelectedEvent.dragging)
+            {
+                SelectedEvent.dragging = false;
+                Invalidate(); // redraw the calender
+            }
+        }
+
         private void CalenderControl_DragOver(object sender, DragEventArgs e)
         {
             Point clientPoint = PointToClient(new Point(e.X, e.Y));
@@ -273,7 +283,6 @@ namespace WineTrip
 
         private Time TimeFromPosition(int y)
         {
-            int rowHeight = Height / (trip.settings.endHour - trip.settings.startHour);
             int hour = (trip.settings.startHour + y / rowHeight);
             if (hour >= 24 || hour < 0)
                 return null;
@@ -286,8 +295,7 @@ namespace WineTrip
         {
             if (time == null)
                 return 0;
-            int rowHeight = Height / (trip.settings.endHour - trip.settings.startHour);
-            return (time.hour - trip.settings.startHour) * rowHeight + rowHeight * time.minute / 60;
+           return (time.hour - trip.settings.startHour) * rowHeight + rowHeight * time.minute / 60;
         }
 
         private int HeightFromDuration(int duration)

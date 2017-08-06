@@ -47,6 +47,7 @@
             this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.CalenderControl_MouseDoubleClick);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CalenderControl_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CalenderControl_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CalenderControl_MouseUp);
             this.Resize += new System.EventHandler(this.CalenderControl_Resize);
             this.ResumeLayout(false);
 

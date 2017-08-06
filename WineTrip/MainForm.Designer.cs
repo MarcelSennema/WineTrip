@@ -86,9 +86,10 @@
             this.toolStripButtonOpen = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSave = new System.Windows.Forms.ToolStripButton();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonSaveAs = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonCalculate = new System.Windows.Forms.ToolStripButton();
             this.membersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.toolStripButtonSaveAs = new System.Windows.Forms.ToolStripButton();
+            this.buttonBottleOrder = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tripBindingSource)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -251,6 +252,7 @@
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.buttonBottleOrder);
             this.splitContainer2.Panel1.Controls.Add(this.buttonOrder);
             this.splitContainer2.Panel1.Controls.Add(this.buttonVisitWebSite);
             this.splitContainer2.Panel1.Controls.Add(this.textBoxWebSite);
@@ -278,6 +280,7 @@
             // 
             // buttonOrder
             // 
+            this.buttonOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonOrder.Location = new System.Drawing.Point(9, 284);
             this.buttonOrder.Name = "buttonOrder";
             this.buttonOrder.Size = new System.Drawing.Size(77, 36);
@@ -708,6 +711,17 @@
             this.toolStrip.TabIndex = 3;
             this.toolStrip.Text = "toolStrip1";
             // 
+            // toolStripButtonSaveAs
+            // 
+            this.toolStripButtonSaveAs.AutoSize = false;
+            this.toolStripButtonSaveAs.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonSaveAs.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSaveAs.Image")));
+            this.toolStripButtonSaveAs.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSaveAs.Name = "toolStripButtonSaveAs";
+            this.toolStripButtonSaveAs.Size = new System.Drawing.Size(47, 47);
+            this.toolStripButtonSaveAs.Text = "Save As";
+            this.toolStripButtonSaveAs.Click += new System.EventHandler(this.toolStripButtonSaveAs_Click);
+            // 
             // toolStripButtonCalculate
             // 
             this.toolStripButtonCalculate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -724,16 +738,16 @@
             this.membersBindingSource.DataMember = "Members";
             this.membersBindingSource.DataSource = this.tripBindingSource;
             // 
-            // toolStripButtonSaveAs
+            // buttonBottleOrder
             // 
-            this.toolStripButtonSaveAs.AutoSize = false;
-            this.toolStripButtonSaveAs.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonSaveAs.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSaveAs.Image")));
-            this.toolStripButtonSaveAs.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonSaveAs.Name = "toolStripButtonSaveAs";
-            this.toolStripButtonSaveAs.Size = new System.Drawing.Size(47, 47);
-            this.toolStripButtonSaveAs.Text = "Save As";
-            this.toolStripButtonSaveAs.Click += new System.EventHandler(this.toolStripButtonSaveAs_Click);
+            this.buttonBottleOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonBottleOrder.Location = new System.Drawing.Point(92, 283);
+            this.buttonBottleOrder.Name = "buttonBottleOrder";
+            this.buttonBottleOrder.Size = new System.Drawing.Size(77, 36);
+            this.buttonBottleOrder.TabIndex = 15;
+            this.buttonBottleOrder.Text = "Order\'";
+            this.buttonBottleOrder.UseVisualStyleBackColor = true;
+            this.buttonBottleOrder.Click += new System.EventHandler(this.buttonBottleOrder_Click);
             // 
             // MainForm
             // 
@@ -843,6 +857,7 @@
         private System.Windows.Forms.Button buttonVisitWebSite;
         private System.Windows.Forms.Button buttonOrder;
         private System.Windows.Forms.ToolStripButton toolStripButtonSaveAs;
+        private System.Windows.Forms.Button buttonBottleOrder;
     }
 }
 

@@ -229,5 +229,11 @@ namespace WineTrip
             orderForm.Show();
         }
 
+        private void buttonBottleOrder_Click(object sender, EventArgs e)
+        {
+            BottleOrderForm orderForm= new BottleOrderForm(trip, SelectedEvent.selectedEvent);
+
+            orderForm.Show();
+        }
     }
 }

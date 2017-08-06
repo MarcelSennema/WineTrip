@@ -61,7 +61,7 @@ namespace WineTrip
             CreateMemberHeaders();
             CreateGrid();
             BottleRowHeaderControl.NameChangedEvent += BottleTextChanged; // let us know when the text of any bottle changes
-            BottleRowHeaderControl.deleteButtonClicked += DeleteBottle; // let us know when the text of any bottle changes
+            BottleRowHeaderControl.deleteButtonClicked += DeleteBottle; // let us know when the user has removed a bottle
             // just to make sure we get the initial layout correct...
             columnHeaderFillerPanel.Width = rowHeaderLayoutPanel.Width + rowHeaderSplitContainer.SplitterWidth;
             orderFocusButtons.Add(new RoundButton(RoundButton.VerticalPostion.top, RoundButton.HorizontalPostition.left, "c", buttonEraseBrush, () => ClearOrder()));
@@ -176,34 +176,6 @@ namespace WineTrip
                 foreach(RoundButton button in orderFocusButtons)
                     button.Draw(rect, e.Graphics, buttonSize, buttonPen, buttonTextBrush, buttonFont);
             }
-        }
-
-
-        private void DrawButton(Rectangle focusRect, RoundButton.VerticalPostion verticalPosition, RoundButton.HorizontalPostition horizontalPostition, string text, Brush brush, PaintEventArgs e )
-        {
-            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            int left = 0;
-            int top = 0;
-            switch (verticalPosition)
-            {
-                case RoundButton.VerticalPostion.top: top = focusRect.Top; break;
-                case RoundButton.VerticalPostion.centre: top = focusRect.Top + (focusRect.Height + buttonSize) /2; break;
-                case RoundButton.VerticalPostion.bottom: top = focusRect.Bottom - buttonSize; break;
-            }
-            switch (horizontalPostition)
-            {
-                case RoundButton.HorizontalPostition.left: left = focusRect.Left - buttonSize / 2; break;
-                case RoundButton.HorizontalPostition.centre: left = focusRect.Left + (focusRect.Width + buttonSize) / 2; break;
-                case RoundButton.HorizontalPostition.right: left = focusRect.Right - buttonSize / 2; break;
-            }                 
-            Rectangle drawingRect = new Rectangle(left, top, buttonSize, buttonSize);
-            drawingRect.Inflate(-2, -2);
-            e.Graphics.FillEllipse(brush, drawingRect);
-            e.Graphics.DrawEllipse(buttonPen, drawingRect);
-            StringFormat drawFormat = new StringFormat();
-            drawFormat.Alignment = StringAlignment.Center;
-            drawFormat.LineAlignment = StringAlignment.Center;
-            e.Graphics.DrawString($"{text}", buttonFont, buttonTextBrush, (Rectangle)drawingRect, drawFormat);
         }
 
         private void DrawCountAndPrice(PaintEventArgs e, int count, decimal price, Rectangle? rect)
