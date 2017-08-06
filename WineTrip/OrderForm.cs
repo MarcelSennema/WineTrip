@@ -212,7 +212,7 @@ namespace WineTrip
             drawFormat.Alignment = StringAlignment.Center;
             drawFormat.LineAlignment = StringAlignment.Center;
             e.Graphics.DrawString($"{count}", countFont, orderFontBrush, (Rectangle)rect, drawFormat);
-            if (showPriceCheckBox.Checked)
+            if (toolStripButtonShowPrice.Checked)
             {
                 drawFormat.LineAlignment = StringAlignment.Far;
                 e.Graphics.DrawString($"{price}", priceFont, orderFontBrush, (Rectangle)rect, drawFormat);
