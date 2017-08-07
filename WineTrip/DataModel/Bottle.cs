@@ -21,6 +21,8 @@ namespace WineTrip.DataModel
         [DataMember]
         public decimal price { get; set; }
         [DataMember]
+        public string grape { get; set; }
+        [DataMember]
         public Wine wine { get; set; }
         [DataMember]
         public bool isSparklingWine { get; set; } = false;

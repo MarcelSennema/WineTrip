@@ -15,7 +15,8 @@ namespace WineTrip
     {
         private static Brush selectedOrderRectangleBrush { get; } = Brushes.Bisque;
         private static Brush orderFontBrush { get; } = Brushes.Black;
-        private Pen gridPen { get; } = Pens.DarkGray;
+        private static Brush focusBrush { get; } = new SolidBrush(Color.FromArgb(80, Color.LightBlue));
+        private static Pen gridPen { get; } = Pens.DarkGray;
 
         private static Font memberNameFont = new Font(
         new FontFamily("Arial"),
@@ -31,7 +32,7 @@ namespace WineTrip
 
         private static Font attributeFont = new Font(
         new FontFamily("Arial"),
-        10,
+        12,
         FontStyle.Regular,
         GraphicsUnit.Pixel);
 
@@ -43,7 +44,7 @@ namespace WineTrip
 
         private static Font priceFont = new Font(
         new FontFamily("Arial"),
-        10,
+        12,
         FontStyle.Regular,
         GraphicsUnit.Pixel);
 
@@ -59,17 +60,17 @@ namespace WineTrip
         FontStyle.Regular,
         GraphicsUnit.Pixel);
 
+        private static int extraBodyHeight = 70; // space for the other attributes Todo: make this dynamic
+        private static int headerColumnWidth = 200;
+        private static int gridColumnWidth = 0;
+        private static int deleteIconSize = 15;
+
+
         private List<RoundButton> orderFocusButtons = new List<RoundButton>();
 
         private Event evnt;
         private Trip trip;
 
-        private int headerRowHeight = 50;
-        private int footerRowHeight = 50;
-        private int extraBodyHeight = 30; // space for the other attributes Todo: make this dynamic
-        private int headerColumnWidth = 200;
-        private int gridColumnWidth = 0;
-        private int scrolledRows = 0;
 
         private List<int> rowHeights = new List<int>();
         private List<int> columnWidths = new List<int>();
@@ -96,12 +97,12 @@ namespace WineTrip
         private void CalcRowHeights(int width) // depends on the size of the rowheader text
         {
             rowHeights = new List<int>();
-            rowHeights.Add(headerRowHeight);
             foreach (Bottle bottle in evnt.bottles)
             {
                 Size sz = CalcRowHeight(width, bottle);
                 rowHeights.Add(sz.Height + extraBodyHeight);
             }
+            gridPanel.Height = rowHeights.Sum(x => x);
          }
 
         private static Size CalcRowHeight(int width, Bottle bottle)
@@ -125,6 +126,23 @@ namespace WineTrip
             columnWidths.Add(gridColumnWidth); // total column
         }
 
+        private Rectangle GetGridRow(int row)
+        {
+            int top = 0;
+            for (int i = 0; i < row; i++)
+                top += rowHeights[i];
+            return new Rectangle(0, top, gridPanel.ClientRectangle.Width, rowHeights[row]);
+        }
+
+        private Rectangle GetGridColumn(int column)
+        {
+            int left = 0;
+            for (int i = 0; i < column; i++)
+                left += columnWidths[i];
+            return new Rectangle(left,0, columnWidths[column], gridPanel.ClientRectangle.Height);
+        }
+
+
         private Rectangle GetGridRectangle(int row, int column)
         {
             int left = 0, top = 0;
@@ -138,6 +156,12 @@ namespace WineTrip
         private void gridPanel_Paint(object sender, PaintEventArgs e)
         {
             CalcColumnWidths();
+            Rectangle rect;
+            // draw the focus background
+            if (currentRow != null && currentRow >= 0)
+                e.Graphics.FillRectangle(focusBrush, GetGridRow((int)currentRow));
+            if (currentColumn != null && currentColumn > 0)
+                e.Graphics.FillRectangle(focusBrush, GetGridColumn((int)currentColumn));
             // draw the grid
             int rightPos = 0;
             for (int i = 0; i < columnWidths.Count - 1; i++)
@@ -147,61 +171,29 @@ namespace WineTrip
                 e.Graphics.DrawLine(gridPen, rightPos, 0, rightPos, gridPanel.ClientRectangle.Height);
             }
             int bottomPos = 0;
-            for(int i = scrolledRows; i < rowHeights.Count - 1; i++)
+            for(int i = 0; i < rowHeights.Count - 1; i++)
             {
                 int topPos = bottomPos;
                 bottomPos += rowHeights[i];
-                if (bottomPos > gridPanel.ClientRectangle.Height - footerRowHeight)
-                    break;
                 e.Graphics.DrawLine(gridPen, 0, bottomPos, gridPanel.ClientRectangle.Width, bottomPos);
             }
-            e.Graphics.DrawLine(gridPen, 0, gridPanel.ClientRectangle.Height - footerRowHeight, gridPanel.ClientRectangle.Width, gridPanel.ClientRectangle.Height - footerRowHeight);
-            // draw the header and footer cells
-            int column = 1;
-            StringFormat drawFormat = new StringFormat();
-            Rectangle rect;
-            foreach (Member member in trip.members)
-            {
-                rect = GetGridRectangle(0, column++);
-                drawFormat.Alignment = StringAlignment.Center;
-                drawFormat.LineAlignment = StringAlignment.Center;
-                e.Graphics.DrawString($"{member.Name}", memberNameFont, orderFontBrush, rect, drawFormat);
-
-                drawFormat.Alignment = StringAlignment.Center;
-                drawFormat.LineAlignment = StringAlignment.Center;
-                rect = new Rectangle(rect.Left, gridPanel.ClientRectangle.Height - footerRowHeight, rect.Width, rect.Height);
-                e.Graphics.DrawString($"{evnt.TotalBottleCount(member):###}", countFont, orderFontBrush, rect, drawFormat);
-                if (toolStripButtonShowPrice.Checked)
-                {
-                    drawFormat.LineAlignment = StringAlignment.Far;
-                    e.Graphics.DrawString($"{evnt.TotalPrice(member):##0.00}", priceFont, orderFontBrush, rect, drawFormat);
-                }
-            }
-            rect = GetGridRectangle(0, column);
-            drawFormat.Alignment = StringAlignment.Center;
-            drawFormat.LineAlignment = StringAlignment.Center;
-            e.Graphics.DrawString($"Total", memberNameFont, orderFontBrush, rect, drawFormat);
-
-            rect = new Rectangle(rect.Left, gridPanel.ClientRectangle.Height - footerRowHeight, rect.Width, rect.Height);
-            e.Graphics.DrawString($"{evnt.TotalBottleCount(null):###}", countFont, orderFontBrush, rect, drawFormat);
-            if (toolStripButtonShowPrice.Checked)
-            {
-                drawFormat.LineAlignment = StringAlignment.Far;
-                e.Graphics.DrawString($"{evnt.TotalPrice(null):##0.00}", priceFont, orderFontBrush, rect, drawFormat);
-            }
             // draw the bottle cells
-            int row = 1;
+            StringFormat drawFormat = new StringFormat();
+            int row = 0, column = 1;
             foreach (Bottle bottle in evnt.bottles)
             {
                 rect = GetGridRectangle(row, 0);
-                if (rect.Bottom > gridPanel.ClientRectangle.Height - footerRowHeight)
-                    break;
                 drawFormat.Alignment = StringAlignment.Near;
                 drawFormat.LineAlignment = StringAlignment.Near;
-                e.Graphics.DrawString($"{bottle.name}", bottleNameFont, orderFontBrush, rect, drawFormat);
+                e.Graphics.DrawString($"{bottle.name}\n{bottle.vintage:####}", bottleNameFont, orderFontBrush, rect, drawFormat);
                 drawFormat.LineAlignment = StringAlignment.Far;
-                e.Graphics.DrawString($"Vintage: {bottle.vintage:####} Size: {bottle.volume:0.00} Price: {bottle.price:##0.00}", attributeFont, orderFontBrush, rect, drawFormat);
-                foreach(Order order in bottle.orders)
+                e.Graphics.DrawString($"Size: {bottle.volume:0.00}\nPrice: {bottle.price:##0.00}", attributeFont, orderFontBrush, rect, drawFormat);
+                rect = new Rectangle(rect.Right - deleteIconSize, rect.Top, deleteIconSize, deleteIconSize);
+                // e.Graphics.DrawRectangle(gridPen, rect);
+                e.Graphics.DrawLine(gridPen, rect.Left, rect.Top, rect.Right, rect.Bottom);
+                e.Graphics.DrawLine(gridPen, rect.Left, rect.Bottom, rect.Right, rect.Top);
+
+                foreach (Order order in bottle.orders)
                 {
                     column = trip.members.IndexOf(order.member) + 1;
                     rect = GetGridRectangle(row, column);
@@ -226,12 +218,8 @@ namespace WineTrip
                 }
                 row++;
             }
-            rect = new Rectangle(0,gridPanel.ClientRectangle.Height - footerRowHeight, gridPanel.ClientRectangle.Width, gridPanel.ClientRectangle.Height - footerRowHeight);
-            drawFormat.Alignment = StringAlignment.Near;
-            drawFormat.LineAlignment = StringAlignment.Near;
-            e.Graphics.DrawString($"Total", bottleNameFont, orderFontBrush, rect, drawFormat);
-            // draw the buttons for the focused cell
-            if (currentRow != null && currentColumn != null)
+             // draw the buttons for the focused cell
+            if (currentRow != null && currentColumn != null && currentColumn > 0)
             {
                 rect = GetGridRectangle((int)currentRow, (int)currentColumn);
                 foreach (RoundButton button in orderFocusButtons)
@@ -253,11 +241,10 @@ namespace WineTrip
         {
             if (currentRow != null && currentRow > 0 && currentColumn != null && currentColumn > 0)
             {
-                Order order = evnt.bottles[(int)currentRow -1].orders.Where(x => x.member == trip.members[(int)currentColumn -1]).FirstOrDefault();
+                Order order = evnt.bottles[(int)currentRow].orders.Where(x => x.member == trip.members[(int)currentColumn -1]).FirstOrDefault();
                 if (order != null)
                 {
                     evnt.bottles[(int)currentRow].orders.Remove(order);
-                    Invalidate();
                 }
             }
         }
@@ -275,51 +262,94 @@ namespace WineTrip
 
         private void AddBottlesToOrder(int increment)
         {
-            Order order = evnt.bottles[(int)currentRow].orders.Where(x => x.member == trip.members[(int)currentColumn]).FirstOrDefault();
+            Order order = evnt.bottles[(int)currentRow].orders.Where(x => x.member == trip.members[(int)currentColumn-1]).FirstOrDefault();
             if (order == null)
             {
-                order = new Order() { member = trip.members[(int)currentColumn], count = increment };
+                order = new Order() { member = trip.members[(int)currentColumn -1], count = increment };
                 evnt.bottles[(int)currentRow].orders.Add(order);
             }
             else
                 order.count += increment;
-            Invalidate();
         }
 
-        private bool IsVisibleRow(int row)
-        {
-            if (row >= rowHeights.Count)
-                return false;
-            int height = 0;
-            for (int i = 0; i <= row; i++)
-                height += rowHeights[i];
-            {
-            }
-            return height < gridPanel.ClientRectangle.Height - footerRowHeight;
-        }
-
+        int? mousedown = null;
         private void gridPanel_MouseDown(object sender, MouseEventArgs e)
         {
+            if(e.Button == MouseButtons.Left)
+                mousedown = e.Y;
+        }
+
+        private void gridPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && mousedown != null)
+            {
+                int diff = e.Y - (int)mousedown;
+
+            }
+            else
+                mousedown = null;
         }
 
         private void gridPanel_MouseClick(object sender, MouseEventArgs e)
         {
-            SetCurrentCell(e.X, e.Y);
+            int? newRow = RowFromY(e.Y);
+            int? newColumn = ColFromX(e.X);
+            SetCurrentCell(newRow, newColumn, e.X, e.Y);
+            if(newColumn == 0 && newRow != null)
+            {
+                Bottle bottle = evnt.bottles[(int)newRow];
+                Rectangle rect = GetGridRectangle((int)newRow, (int)newColumn);
+                rect = new Rectangle(rect.Right - deleteIconSize, rect.Top, deleteIconSize, deleteIconSize);
+                if(new Region(rect).IsVisible(e.Location)) // delete button pressed
+                {
+                    evnt.bottles.Remove(bottle);
+                    if (currentRow >= evnt.bottles.Count)
+                        currentRow = evnt.bottles.Count > 0 ? (int?)evnt.bottles.Count - 1 : null;
+                    RefreshGrid();
+                }
+                else
+                {
+                    BottleDetailForm bottleDetailForm = new BottleDetailForm(bottle, RefreshGrid);
+                    bottleDetailForm.Show();
+                }
+            }
         }
 
-        private void SetCurrentCell(int x, int y)
+        private void SetCurrentCell(int? newRow, int? newColumn, int x, int y)
         {
-            if (currentRow != null && currentRow != null)
-                gridPanel.Invalidate(GetGridRectangle((int)currentRow, (int)currentColumn));
-            int height = 0;
-            int row = 0;
-            while (row < rowHeights.Count && y > height + rowHeights[row])
+            if (currentRow == newRow && currentColumn == newColumn) // make clicking a selected cell unselected
             {
-                height += rowHeights[row];
-                row++;
+                if (currentRow != null && currentColumn != null && currentColumn > 0)
+                {
+                    bool buttonPressed = false;
+                    int i = 0;
+                    while (!buttonPressed && i < orderFocusButtons.Count())
+                    {
+                        RoundButton button = orderFocusButtons[i];
+                        if (button.GetButtonRegion(GetGridRectangle((int)currentRow, (int)currentColumn), buttonSize).IsVisible(x, y))
+                        {
+                            buttonPressed = true;
+                            button.Invoke();
+                        }
+                        i++;
+                    }
+                    if (buttonPressed)
+                    {
+                        gridPanel.Invalidate();
+                        return;
+                    }
+                    newRow = null;
+                    newColumn = null;
+                }
             }
-            int? newRow = IsVisibleRow(row) ? (int?)row : null;
+            currentRow = newRow;
+            currentColumn = newColumn;
+            if (currentRow != null && currentRow != null)
+                gridPanel.Invalidate();
+        }
 
+        private int ColFromX(int x)
+        {
             int width = 0;
             int col = 0;
             while (col < columnWidths.Count && x > width + columnWidths[col])
@@ -327,33 +357,94 @@ namespace WineTrip
                 width += columnWidths[col];
                 col++;
             }
-            int? newColumn = col;
-            if(currentRow == newRow && currentColumn == newColumn) // make clicking a selected cell unselected
-            {
-                newRow = null;
-                newColumn = null;
-            }
-            currentRow = newRow;
-            currentColumn = newColumn;
 
-            if (currentRow != null && currentRow != null)
+            return col;
+        }
+
+        private int RowFromY(int y)
+        {
+            int height = 0;
+            int row = 0;
+            while (row < rowHeights.Count && y > height + rowHeights[row])
             {
-                bool buttonPressed = false;
-                int i = 0;
-                while (!buttonPressed && i < orderFocusButtons.Count())
-                {
-                    RoundButton button = orderFocusButtons[i];
-                    if (button.GetButtonRegion(GetGridRectangle((int)currentRow, (int)currentColumn), buttonSize).IsVisible(x, y))
-                    {
-                        buttonPressed = true;
-                        button.Invoke();
-                    }
-                    i++;
-                }
-                if (buttonPressed) // we handled a button press, nothing else to do here
-                    return;
-                gridPanel.Invalidate(GetGridRectangle((int)currentRow, (int)currentColumn));
+                height += rowHeights[row];
+                row++;
             }
+
+            return row;
+        }
+
+        private void topPanel_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawLine(gridPen, 0, topPanel.ClientRectangle.Height-1, topPanel.ClientRectangle.Width, topPanel.ClientRectangle.Height-1);
+            Rectangle rect;
+            int column = 1;
+            int left = columnWidths[0];
+            StringFormat drawFormat = new StringFormat();
+            drawFormat.Alignment = StringAlignment.Center;
+            drawFormat.LineAlignment = StringAlignment.Center;
+            foreach (Member member in trip.members)
+            {
+                e.Graphics.DrawLine(gridPen, left, 0, left, topPanel.ClientRectangle.Height);
+                rect = new Rectangle(left, 0, columnWidths[column], topPanel.ClientRectangle.Height);
+                e.Graphics.DrawString($"{member.Name}", memberNameFont, orderFontBrush, rect, drawFormat);
+                left += columnWidths[column++];
+            }
+            e.Graphics.DrawLine(gridPen, left, 0, left, topPanel.ClientRectangle.Height);
+            rect = new Rectangle(left, 0, columnWidths[column], topPanel.ClientRectangle.Height);
+            e.Graphics.DrawString($"Total", memberNameFont, orderFontBrush, rect, drawFormat);
+        }
+
+        private void bottomPanel_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawLine(gridPen, 0, 0, bottomPanel.ClientRectangle.Width, 0);
+            Rectangle rect;
+            int column = 0;
+            int left = 0;
+            StringFormat drawFormat = new StringFormat();
+            drawFormat.Alignment = StringAlignment.Near;
+            drawFormat.LineAlignment = StringAlignment.Center;
+            rect = new Rectangle(left, 0, columnWidths[column++], bottomPanel.ClientRectangle.Height);
+            e.Graphics.DrawString("Total", bottleNameFont, orderFontBrush, rect, drawFormat);
+
+            drawFormat.Alignment = StringAlignment.Center;
+            left = columnWidths[0];
+            foreach (Member member in trip.members)
+            {
+                e.Graphics.DrawLine(gridPen, left, 0, left, bottomPanel.ClientRectangle.Height);
+                drawFormat.LineAlignment = StringAlignment.Center;
+                rect = new Rectangle(left, 0, columnWidths[column], bottomPanel.ClientRectangle.Height);
+                e.Graphics.DrawString($"{evnt.TotalBottleCount(member):###}", countFont, orderFontBrush, rect, drawFormat);
+                if (toolStripButtonShowPrice.Checked)
+                {
+                    drawFormat.LineAlignment = StringAlignment.Far;
+                    e.Graphics.DrawString($"{evnt.TotalPrice(member):##0.00}", priceFont, orderFontBrush, rect, drawFormat);
+                }
+                left += columnWidths[column++];
+            }
+            e.Graphics.DrawLine(gridPen, left, 0, left, bottomPanel.ClientRectangle.Height);
+            drawFormat.LineAlignment = StringAlignment.Center;
+            rect = new Rectangle(left, 0, columnWidths[column], bottomPanel.ClientRectangle.Height);
+            e.Graphics.DrawString($"{evnt.TotalBottleCount(null):###}", countFont, orderFontBrush, rect, drawFormat);
+            if (toolStripButtonShowPrice.Checked)
+            {
+                drawFormat.LineAlignment = StringAlignment.Far;
+                e.Graphics.DrawString($"{evnt.TotalPrice(null):##0.00}", priceFont, orderFontBrush, rect, drawFormat);
+            }
+        }
+
+        private void buttonAddBottle_Click(object sender, EventArgs e)
+        {
+            Bottle bottle = new Bottle();
+            evnt.bottles.Add(bottle);
+            BottleDetailForm bottleDetailForm = new BottleDetailForm(bottle, RefreshGrid);
+            bottleDetailForm.Show();
+        }
+
+        private void RefreshGrid()
+        {
+            CalcRowHeights(headerColumnWidth);
+            gridPanel.Invalidate();
         }
     }
 }

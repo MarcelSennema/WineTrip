@@ -66,6 +66,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BottleDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BottleDetailForm.Designer.cs">
+      <DependentUpon>BottleDetailForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="BottleOrderForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +147,9 @@
     <Compile Include="UserHeaderControl.Designer.cs">
       <DependentUpon>UserHeaderControl.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BottleDetailForm.resx">
+      <DependentUpon>BottleDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BottleOrderForm.resx">
       <DependentUpon>BottleOrderForm.cs</DependentUpon>
     </EmbeddedResource>
