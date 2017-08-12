@@ -17,10 +17,12 @@ namespace WineTrip
         public delegate void Formclosed();
         private Formclosed formclosed;
 
-        public BottleDetailForm(Bottle bottle, Formclosed formclosed)
+        public BottleDetailForm(Bottle bottle, Formclosed formclosed, Form parentForm)
         {
             this.formclosed += formclosed;
             InitializeComponent();
+            StartPosition = FormStartPosition.Manual;
+            Location = new Point(parentForm.Location.X + (parentForm.Width - Width) / 2, parentForm.Location.Y + (parentForm.Height - Height) / 2);
             bottlesBindingSource.DataSource = bottle;
             radioButtonRed.Checked = (bottle.wine == Bottle.Wine.red);
             radioButtonWhite.Checked = (bottle.wine == Bottle.Wine.white);
@@ -38,5 +40,6 @@ namespace WineTrip
             ((Bottle)bottlesBindingSource.DataSource).wine = radioButtonRed.Checked ? Bottle.Wine.red : radioButtonWhite.Checked ? Bottle.Wine.white : radioButtonRose.Checked ? Bottle.Wine.rose : Bottle.Wine.unspecified;
             formclosed.Invoke();
         }
+
     }
 }

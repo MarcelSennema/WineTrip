@@ -30,14 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BottleOrderForm));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButtonShowPrice = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonCreatePDF = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonPayments = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonShowPrice = new System.Windows.Forms.ToolStripButton();
             this.gridPanel = new System.Windows.Forms.Panel();
             this.topPanel = new System.Windows.Forms.Panel();
+            this.buttonAddBottle = new System.Windows.Forms.Button();
             this.bodyPanel = new System.Windows.Forms.Panel();
             this.bottomPanel = new System.Windows.Forms.Panel();
-            this.buttonAddBottle = new System.Windows.Forms.Button();
+            this.toolStripButtonSendOrderMail = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.topPanel.SuspendLayout();
             this.bodyPanel.SuspendLayout();
@@ -48,12 +49,32 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonCreatePDF,
             this.toolStripButtonPayments,
-            this.toolStripButtonShowPrice});
+            this.toolStripButtonShowPrice,
+            this.toolStripButtonSendOrderMail});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1324, 50);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripButtonCreatePDF
+            // 
+            this.toolStripButtonCreatePDF.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonCreatePDF.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCreatePDF.Image")));
+            this.toolStripButtonCreatePDF.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonCreatePDF.Name = "toolStripButtonCreatePDF";
+            this.toolStripButtonCreatePDF.Size = new System.Drawing.Size(69, 47);
+            this.toolStripButtonCreatePDF.Text = "Create PDF";
+            this.toolStripButtonCreatePDF.Click += new System.EventHandler(this.toolStripButtonCreatePDF_Click);
+            // 
+            // toolStripButtonPayments
+            // 
+            this.toolStripButtonPayments.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonPayments.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonPayments.Image")));
+            this.toolStripButtonPayments.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonPayments.Name = "toolStripButtonPayments";
+            this.toolStripButtonPayments.Size = new System.Drawing.Size(63, 47);
+            this.toolStripButtonPayments.Text = "Payments";
             // 
             // toolStripButtonShowPrice
             // 
@@ -69,24 +90,6 @@
             this.toolStripButtonShowPrice.Text = "Show Price";
             this.toolStripButtonShowPrice.ToolTipText = "Show price";
             this.toolStripButtonShowPrice.Click += new System.EventHandler(this.toolStripButtonShowPrice_Click);
-            // 
-            // toolStripButtonCreatePDF
-            // 
-            this.toolStripButtonCreatePDF.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonCreatePDF.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCreatePDF.Image")));
-            this.toolStripButtonCreatePDF.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonCreatePDF.Name = "toolStripButtonCreatePDF";
-            this.toolStripButtonCreatePDF.Size = new System.Drawing.Size(69, 47);
-            this.toolStripButtonCreatePDF.Text = "Create PDF";
-            // 
-            // toolStripButtonPayments
-            // 
-            this.toolStripButtonPayments.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonPayments.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonPayments.Image")));
-            this.toolStripButtonPayments.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonPayments.Name = "toolStripButtonPayments";
-            this.toolStripButtonPayments.Size = new System.Drawing.Size(63, 47);
-            this.toolStripButtonPayments.Text = "Payments";
             // 
             // gridPanel
             // 
@@ -111,6 +114,16 @@
             this.topPanel.TabIndex = 0;
             this.topPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.topPanel_Paint);
             // 
+            // buttonAddBottle
+            // 
+            this.buttonAddBottle.Location = new System.Drawing.Point(9, 3);
+            this.buttonAddBottle.Name = "buttonAddBottle";
+            this.buttonAddBottle.Size = new System.Drawing.Size(99, 42);
+            this.buttonAddBottle.TabIndex = 0;
+            this.buttonAddBottle.Text = "Add bottle";
+            this.buttonAddBottle.UseVisualStyleBackColor = true;
+            this.buttonAddBottle.Click += new System.EventHandler(this.buttonAddBottle_Click);
+            // 
             // bodyPanel
             // 
             this.bodyPanel.AutoScroll = true;
@@ -130,15 +143,15 @@
             this.bottomPanel.TabIndex = 0;
             this.bottomPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.bottomPanel_Paint);
             // 
-            // buttonAddBottle
+            // toolStripButtonSendOrderMail
             // 
-            this.buttonAddBottle.Location = new System.Drawing.Point(9, 3);
-            this.buttonAddBottle.Name = "buttonAddBottle";
-            this.buttonAddBottle.Size = new System.Drawing.Size(99, 42);
-            this.buttonAddBottle.TabIndex = 0;
-            this.buttonAddBottle.Text = "Add bottle";
-            this.buttonAddBottle.UseVisualStyleBackColor = true;
-            this.buttonAddBottle.Click += new System.EventHandler(this.buttonAddBottle_Click);
+            this.toolStripButtonSendOrderMail.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonSendOrderMail.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSendOrderMail.Image")));
+            this.toolStripButtonSendOrderMail.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSendOrderMail.Name = "toolStripButtonSendOrderMail";
+            this.toolStripButtonSendOrderMail.Size = new System.Drawing.Size(96, 47);
+            this.toolStripButtonSendOrderMail.Text = "Send Order Mail";
+            this.toolStripButtonSendOrderMail.Click += new System.EventHandler(this.toolStripButtonSendOrderMail_Click);
             // 
             // BottleOrderForm
             // 
@@ -151,6 +164,7 @@
             this.Controls.Add(this.toolStrip1);
             this.DoubleBuffered = true;
             this.Name = "BottleOrderForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "BottleOrderForm";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -172,5 +186,6 @@
         private System.Windows.Forms.Panel bodyPanel;
         private System.Windows.Forms.Panel bottomPanel;
         private System.Windows.Forms.Button buttonAddBottle;
+        private System.Windows.Forms.ToolStripButton toolStripButtonSendOrderMail;
     }
 }

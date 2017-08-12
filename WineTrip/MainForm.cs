@@ -233,7 +233,12 @@ namespace WineTrip
         {
             BottleOrderForm orderForm= new BottleOrderForm(trip, SelectedEvent.selectedEvent);
 
-            orderForm.Show();
+            orderForm.ShowDialog();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            System.Windows.Automation.AutomationElement.FromHandle(Handle); // for creating the on screen keyboard if in tablet mode
         }
     }
 }

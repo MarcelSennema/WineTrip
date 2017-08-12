@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -63,7 +66,7 @@ namespace WineTrip
         private static int extraBodyHeight = 70; // space for the other attributes Todo: make this dynamic
         private static int headerColumnWidth = 200;
         private static int gridColumnWidth = 0;
-        private static int deleteIconSize = 15;
+        private static int deleteIconSize = 25;
 
 
         private List<RoundButton> orderFocusButtons = new List<RoundButton>();
@@ -309,8 +312,8 @@ namespace WineTrip
                 }
                 else
                 {
-                    BottleDetailForm bottleDetailForm = new BottleDetailForm(bottle, RefreshGrid);
-                    bottleDetailForm.Show();
+                    BottleDetailForm bottleDetailForm = new BottleDetailForm(bottle, RefreshGrid, this);
+                    bottleDetailForm.Show(this);
                 }
             }
         }
@@ -437,7 +440,8 @@ namespace WineTrip
         {
             Bottle bottle = new Bottle();
             evnt.bottles.Add(bottle);
-            BottleDetailForm bottleDetailForm = new BottleDetailForm(bottle, RefreshGrid);
+            CalcRowHeights(headerColumnWidth);
+            BottleDetailForm bottleDetailForm = new BottleDetailForm(bottle, RefreshGrid, this);
             bottleDetailForm.Show();
         }
 
@@ -445,6 +449,39 @@ namespace WineTrip
         {
             CalcRowHeights(headerColumnWidth);
             gridPanel.Invalidate();
+        }
+
+        private void toolStripButtonCreatePDF_Click(object sender, EventArgs e)
+        {
+            OrderPDF orderPDF = new OrderPDF();
+            orderPDF.CreateAndView(trip, evnt);
+        }
+
+        private void toolStripButtonSendOrderMail_Click(object sender, EventArgs e)
+        {
+            OrderPDF orderPDF = new OrderPDF();
+            string pdf = orderPDF.CreateAndGet(trip, evnt);
+            
+            var fromAddress = new MailAddress("marcelsennema@gmail.com", "Marcel Sennema");
+            var toAddress = new MailAddress("marcel@sennema.net", "Marcel Sennema");
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, ConfigurationManager.AppSettings["GooglePassword"])
+            };
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = "Order form",
+                Body = "Dear sir,\nAttached you will find the order\n\nThanks for a wonderful visit\nMarcel Sennema\n"
+            })
+            {
+                smtp.Send(message);
+            }
         }
     }
 }

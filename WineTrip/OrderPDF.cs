@@ -27,8 +27,23 @@ namespace WineTrip
         {
         }
 
-        public void Create(Trip trip, Event evnt)
-        { 
+        public void CreateAndView(Trip trip, Event evnt)
+        {
+            PdfDocumentRenderer pdfRenderer = PrepareDocument(trip, evnt);
+            const string filename = "Order.pdf";
+            pdfRenderer.PdfDocument.Save(filename);
+
+            Process.Start(filename); // start a viewer.
+        }
+
+        public string CreateAndGet(Trip trip, Event evnt)
+        {
+            PdfDocumentRenderer pdfRenderer = PrepareDocument(trip, evnt);
+            return pdfRenderer.PdfDocument.ToString();
+        }
+
+        private PdfDocumentRenderer PrepareDocument(Trip trip, Event evnt)
+        {
             this.trip = trip;
             this.evnt = evnt;
             document = new Document();
@@ -47,10 +62,7 @@ namespace WineTrip
 
             pdfRenderer.Document = document;
             pdfRenderer.RenderDocument();
-            const string filename = "Order.pdf";
-            pdfRenderer.PdfDocument.Save(filename);
-            
-            Process.Start(filename); // start a viewer.
+            return pdfRenderer;
         }
 
         void DefineStyles()
@@ -206,7 +218,7 @@ namespace WineTrip
             row.Cells[trip.members.Count + 1].AddParagraph($"{evnt.TotalBottleCount(null)}").Style = "Count";
             row.Cells[trip.members.Count + 1].AddParagraph($"{evnt.TotalPrice(null)}").Style = "Price";
             // show the grid
-            table.SetEdge(0, 0, trip.members.Count + 1, evnt.bottles.Count + 1, Edge.Box, BorderStyle.Single, 0.75, Color.Empty);
+            table.SetEdge(0, 0, table.Columns.Count, table.Rows.Count, Edge.Box, BorderStyle.Single, 0.75, Color.Empty);
         }
 
      }

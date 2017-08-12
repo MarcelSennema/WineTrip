@@ -43,7 +43,7 @@
             this.calenderTabControl = new System.Windows.Forms.TabControl();
             this.detailsPanel = new System.Windows.Forms.Panel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.buttonOrder = new System.Windows.Forms.Button();
+            this.buttonBottleOrder = new System.Windows.Forms.Button();
             this.buttonVisitWebSite = new System.Windows.Forms.Button();
             this.textBoxWebSite = new System.Windows.Forms.TextBox();
             this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -89,7 +89,6 @@
             this.toolStripButtonSaveAs = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonCalculate = new System.Windows.Forms.ToolStripButton();
             this.membersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.buttonBottleOrder = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tripBindingSource)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -252,8 +251,8 @@
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.buttonVerifyAdress);
             this.splitContainer2.Panel1.Controls.Add(this.buttonBottleOrder);
-            this.splitContainer2.Panel1.Controls.Add(this.buttonOrder);
             this.splitContainer2.Panel1.Controls.Add(this.buttonVisitWebSite);
             this.splitContainer2.Panel1.Controls.Add(this.textBoxWebSite);
             this.splitContainer2.Panel1.Controls.Add(this.label12);
@@ -278,16 +277,16 @@
             this.splitContainer2.SplitterDistance = 322;
             this.splitContainer2.TabIndex = 6;
             // 
-            // buttonOrder
+            // buttonBottleOrder
             // 
-            this.buttonOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonOrder.Location = new System.Drawing.Point(9, 284);
-            this.buttonOrder.Name = "buttonOrder";
-            this.buttonOrder.Size = new System.Drawing.Size(77, 36);
-            this.buttonOrder.TabIndex = 14;
-            this.buttonOrder.Text = "Order";
-            this.buttonOrder.UseVisualStyleBackColor = true;
-            this.buttonOrder.Click += new System.EventHandler(this.buttonOrder_Click);
+            this.buttonBottleOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonBottleOrder.Location = new System.Drawing.Point(9, 283);
+            this.buttonBottleOrder.Name = "buttonBottleOrder";
+            this.buttonBottleOrder.Size = new System.Drawing.Size(77, 36);
+            this.buttonBottleOrder.TabIndex = 10;
+            this.buttonBottleOrder.Text = "Order";
+            this.buttonBottleOrder.UseVisualStyleBackColor = true;
+            this.buttonBottleOrder.Click += new System.EventHandler(this.buttonBottleOrder_Click);
             // 
             // buttonVisitWebSite
             // 
@@ -295,7 +294,7 @@
             this.buttonVisitWebSite.Location = new System.Drawing.Point(467, 99);
             this.buttonVisitWebSite.Name = "buttonVisitWebSite";
             this.buttonVisitWebSite.Size = new System.Drawing.Size(77, 20);
-            this.buttonVisitWebSite.TabIndex = 13;
+            this.buttonVisitWebSite.TabIndex = 6;
             this.buttonVisitWebSite.Text = "Visit";
             this.buttonVisitWebSite.UseVisualStyleBackColor = true;
             this.buttonVisitWebSite.Click += new System.EventHandler(this.buttonVisitWebSite_Click);
@@ -308,7 +307,7 @@
             this.textBoxWebSite.Location = new System.Drawing.Point(91, 99);
             this.textBoxWebSite.Name = "textBoxWebSite";
             this.textBoxWebSite.Size = new System.Drawing.Size(369, 20);
-            this.textBoxWebSite.TabIndex = 12;
+            this.textBoxWebSite.TabIndex = 5;
             // 
             // eventBindingSource
             // 
@@ -329,7 +328,7 @@
             this.buttonDelete.Location = new System.Drawing.Point(467, 4);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(77, 20);
-            this.buttonDelete.TabIndex = 10;
+            this.buttonDelete.TabIndex = 1;
             this.buttonDelete.Text = "Delete";
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
@@ -380,7 +379,7 @@
             this.textboxDuration.Location = new System.Drawing.Point(91, 30);
             this.textboxDuration.Name = "textboxDuration";
             this.textboxDuration.Size = new System.Drawing.Size(110, 20);
-            this.textboxDuration.TabIndex = 1;
+            this.textboxDuration.TabIndex = 2;
             this.textboxDuration.Validated += new System.EventHandler(this.generic_Validated);
             // 
             // textboxDescription
@@ -392,7 +391,7 @@
             this.textboxDescription.Location = new System.Drawing.Point(91, 176);
             this.textboxDescription.Name = "textboxDescription";
             this.textboxDescription.Size = new System.Drawing.Size(453, 100);
-            this.textboxDescription.TabIndex = 2;
+            this.textboxDescription.TabIndex = 9;
             this.textboxDescription.Text = "";
             // 
             // textBoxAddress
@@ -403,8 +402,8 @@
             this.textBoxAddress.Location = new System.Drawing.Point(91, 56);
             this.textBoxAddress.Multiline = true;
             this.textBoxAddress.Name = "textBoxAddress";
-            this.textBoxAddress.Size = new System.Drawing.Size(453, 36);
-            this.textBoxAddress.TabIndex = 0;
+            this.textBoxAddress.Size = new System.Drawing.Size(369, 36);
+            this.textBoxAddress.TabIndex = 3;
             this.textBoxAddress.Validated += new System.EventHandler(this.generic_Validated);
             // 
             // textBoxEmail
@@ -415,7 +414,7 @@
             this.textBoxEmail.Location = new System.Drawing.Point(91, 124);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(453, 20);
-            this.textBoxEmail.TabIndex = 1;
+            this.textBoxEmail.TabIndex = 7;
             // 
             // textBoxGPSLocation
             // 
@@ -426,7 +425,7 @@
             this.textBoxGPSLocation.Name = "textBoxGPSLocation";
             this.textBoxGPSLocation.ReadOnly = true;
             this.textBoxGPSLocation.Size = new System.Drawing.Size(453, 20);
-            this.textBoxGPSLocation.TabIndex = 2;
+            this.textBoxGPSLocation.TabIndex = 8;
             // 
             // label7
             // 
@@ -481,7 +480,6 @@
             // 
             // localMap
             // 
-            this.localMap.Controls.Add(this.buttonVerifyAdress);
             this.localMap.Controls.Add(this.pictureBoxLocalMap);
             this.localMap.Location = new System.Drawing.Point(4, 22);
             this.localMap.Name = "localMap";
@@ -493,10 +491,10 @@
             // 
             // buttonVerifyAdress
             // 
-            this.buttonVerifyAdress.Location = new System.Drawing.Point(6, 6);
+            this.buttonVerifyAdress.Location = new System.Drawing.Point(467, 56);
             this.buttonVerifyAdress.Name = "buttonVerifyAdress";
             this.buttonVerifyAdress.Size = new System.Drawing.Size(77, 36);
-            this.buttonVerifyAdress.TabIndex = 8;
+            this.buttonVerifyAdress.TabIndex = 4;
             this.buttonVerifyAdress.Text = "Verify Address";
             this.buttonVerifyAdress.UseVisualStyleBackColor = true;
             this.buttonVerifyAdress.Click += new System.EventHandler(this.buttonVerifyAdress_Click);
@@ -738,17 +736,6 @@
             this.membersBindingSource.DataMember = "Members";
             this.membersBindingSource.DataSource = this.tripBindingSource;
             // 
-            // buttonBottleOrder
-            // 
-            this.buttonBottleOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonBottleOrder.Location = new System.Drawing.Point(92, 283);
-            this.buttonBottleOrder.Name = "buttonBottleOrder";
-            this.buttonBottleOrder.Size = new System.Drawing.Size(77, 36);
-            this.buttonBottleOrder.TabIndex = 15;
-            this.buttonBottleOrder.Text = "Order\'";
-            this.buttonBottleOrder.UseVisualStyleBackColor = true;
-            this.buttonBottleOrder.Click += new System.EventHandler(this.buttonBottleOrder_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -759,6 +746,7 @@
             this.Controls.Add(this.toolStrip);
             this.Name = "MainForm";
             this.Text = "Winetrip";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tripBindingSource)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
@@ -855,7 +843,6 @@
         private System.Windows.Forms.TextBox textBoxWebSite;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button buttonVisitWebSite;
-        private System.Windows.Forms.Button buttonOrder;
         private System.Windows.Forms.ToolStripButton toolStripButtonSaveAs;
         private System.Windows.Forms.Button buttonBottleOrder;
     }

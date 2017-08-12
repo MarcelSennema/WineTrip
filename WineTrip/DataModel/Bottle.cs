@@ -27,7 +27,7 @@ namespace WineTrip.DataModel
         [DataMember]
         public bool isSparklingWine { get; set; } = false;
         [DataMember]
-        public bool isDesertWine { get; set; } = false;
+        public bool isDessertWine { get; set; } = false;
         [DataMember]
         public string notitie { get; set; }
         [DataMember]

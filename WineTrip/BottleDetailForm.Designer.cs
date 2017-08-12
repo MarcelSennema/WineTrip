@@ -124,7 +124,7 @@
             // 
             this.checkBoxSparkling.AutoSize = true;
             this.checkBoxSparkling.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bottlesBindingSource, "isSparklingWine", true));
-            this.checkBoxSparkling.Location = new System.Drawing.Point(227, 183);
+            this.checkBoxSparkling.Location = new System.Drawing.Point(222, 140);
             this.checkBoxSparkling.Name = "checkBoxSparkling";
             this.checkBoxSparkling.Size = new System.Drawing.Size(70, 17);
             this.checkBoxSparkling.TabIndex = 8;
@@ -134,18 +134,18 @@
             // checkBoxDesert
             // 
             this.checkBoxDesert.AutoSize = true;
-            this.checkBoxDesert.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bottlesBindingSource, "isDesertWine", true));
-            this.checkBoxDesert.Location = new System.Drawing.Point(317, 183);
+            this.checkBoxDesert.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bottlesBindingSource, "isDessertWine", true));
+            this.checkBoxDesert.Location = new System.Drawing.Point(312, 140);
             this.checkBoxDesert.Name = "checkBoxDesert";
-            this.checkBoxDesert.Size = new System.Drawing.Size(57, 17);
+            this.checkBoxDesert.Size = new System.Drawing.Size(62, 17);
             this.checkBoxDesert.TabIndex = 9;
-            this.checkBoxDesert.Text = "Desert";
+            this.checkBoxDesert.Text = "Dessert";
             this.checkBoxDesert.UseVisualStyleBackColor = true;
             // 
             // radioButtonRed
             // 
             this.radioButtonRed.AutoSize = true;
-            this.radioButtonRed.Location = new System.Drawing.Point(12, 182);
+            this.radioButtonRed.Location = new System.Drawing.Point(14, 139);
             this.radioButtonRed.Name = "radioButtonRed";
             this.radioButtonRed.Size = new System.Drawing.Size(45, 17);
             this.radioButtonRed.TabIndex = 5;
@@ -156,7 +156,7 @@
             // radioButtonWhite
             // 
             this.radioButtonWhite.AutoSize = true;
-            this.radioButtonWhite.Location = new System.Drawing.Point(82, 182);
+            this.radioButtonWhite.Location = new System.Drawing.Point(79, 139);
             this.radioButtonWhite.Name = "radioButtonWhite";
             this.radioButtonWhite.Size = new System.Drawing.Size(53, 17);
             this.radioButtonWhite.TabIndex = 6;
@@ -167,7 +167,7 @@
             // radioButtonRose
             // 
             this.radioButtonRose.AutoSize = true;
-            this.radioButtonRose.Location = new System.Drawing.Point(154, 182);
+            this.radioButtonRose.Location = new System.Drawing.Point(152, 139);
             this.radioButtonRose.Name = "radioButtonRose";
             this.radioButtonRose.Size = new System.Drawing.Size(50, 17);
             this.radioButtonRose.TabIndex = 7;
@@ -178,10 +178,10 @@
             // textBox1
             // 
             this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bottlesBindingSource, "notitie", true));
-            this.textBox1.Location = new System.Drawing.Point(12, 206);
+            this.textBox1.Location = new System.Drawing.Point(12, 163);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(603, 136);
+            this.textBox1.Size = new System.Drawing.Size(603, 179);
             this.textBox1.TabIndex = 10;
             // 
             // bottlesBindingSource
@@ -199,6 +199,13 @@
             // 
             // textBoxGrape
             // 
+            this.textBoxGrape.AutoCompleteCustomSource.AddRange(new string[] {
+            "Chardonnay",
+            "Pinot blanc",
+            "Pinot noir"});
+            this.textBoxGrape.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.textBoxGrape.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.textBoxGrape.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bottlesBindingSource, "grape", true));
             this.textBoxGrape.Location = new System.Drawing.Point(79, 113);
             this.textBoxGrape.Name = "textBoxGrape";
             this.textBoxGrape.Size = new System.Drawing.Size(247, 20);
@@ -208,6 +215,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(627, 354);
             this.ControlBox = false;
             this.Controls.Add(this.textBoxGrape);
@@ -233,6 +241,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "BottleDetailForm";
             this.Deactivate += new System.EventHandler(this.BottleDetailForm_Deactivate);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.BottleDetailForm_FormClosed);
