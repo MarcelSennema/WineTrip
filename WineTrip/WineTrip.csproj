@@ -106,6 +106,7 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Private.Config</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="RoundButton.cs" />
     <Compile Include="SelectedEvent.cs" />
@@ -193,6 +194,7 @@
     <None Include="Private.Config">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Private.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Properties\DataSources\WineTrip.DataModel.Event.datasource" />
     <None Include="Properties\DataSources\WineTrip.DataModel.Trip.datasource" />

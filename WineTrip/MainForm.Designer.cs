@@ -280,7 +280,7 @@
             // buttonBottleOrder
             // 
             this.buttonBottleOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonBottleOrder.Location = new System.Drawing.Point(9, 283);
+            this.buttonBottleOrder.Location = new System.Drawing.Point(0, 284);
             this.buttonBottleOrder.Name = "buttonBottleOrder";
             this.buttonBottleOrder.Size = new System.Drawing.Size(77, 36);
             this.buttonBottleOrder.TabIndex = 10;

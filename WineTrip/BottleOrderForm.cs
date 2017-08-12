@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -453,17 +456,21 @@ namespace WineTrip
 
         private void toolStripButtonCreatePDF_Click(object sender, EventArgs e)
         {
+            string filename = "order.pdf";
             OrderPDF orderPDF = new OrderPDF();
-            orderPDF.CreateAndView(trip, evnt);
+            orderPDF.Create(trip, evnt, filename);
+            Process.Start(filename);
         }
 
         private void toolStripButtonSendOrderMail_Click(object sender, EventArgs e)
         {
+            string filename = "order.pdf";
             OrderPDF orderPDF = new OrderPDF();
-            string pdf = orderPDF.CreateAndGet(trip, evnt);
-            
-            var fromAddress = new MailAddress("marcelsennema@gmail.com", "Marcel Sennema");
-            var toAddress = new MailAddress("marcel@sennema.net", "Marcel Sennema");
+            orderPDF.Create(trip, evnt,filename);
+
+            MailAddress fromAddress = new MailAddress("marcelsennema@gmail.com", "Wine trip solutions");
+            MailAddress toAddress = new MailAddress("marcel@sennema.net", "Marcel Sennema");
+            string password = ConfigurationManager.AppSettings["GooglePassword"];
 
             var smtp = new SmtpClient
             {
@@ -472,14 +479,24 @@ namespace WineTrip
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromAddress.Address, ConfigurationManager.AppSettings["GooglePassword"])
+                Credentials = new NetworkCredential(fromAddress.Address, password)
             };
             using (var message = new MailMessage(fromAddress, toAddress)
             {
-                Subject = "Order form",
-                Body = "Dear sir,\nAttached you will find the order\n\nThanks for a wonderful visit\nMarcel Sennema\n"
+                Subject = "Order",
+                Body = "Dear Sir or Madam,\n\nAttached you will find the order of our group.\n\nCheers,\nMarcel Sennema\n"
             })
             {
+                FileInfo fileInfo = new FileInfo(filename);
+                Attachment attachment = new Attachment(filename, MediaTypeNames.Application.Octet);
+                ContentDisposition disposition = attachment.ContentDisposition;
+                disposition.CreationDate = fileInfo.CreationTime;
+                disposition.ModificationDate = fileInfo.LastWriteTime;
+                disposition.ReadDate = fileInfo.LastAccessTime;
+                disposition.FileName = Path.GetFileName(filename);
+                disposition.Size = fileInfo.Length;
+                disposition.DispositionType = DispositionTypeNames.Attachment;
+                message.Attachments.Add(attachment);
                 smtp.Send(message);
             }
         }

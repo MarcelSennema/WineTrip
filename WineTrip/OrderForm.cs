@@ -358,7 +358,7 @@ namespace WineTrip
         private void buttonCreatePDF_Click(object sender, EventArgs e)
         {
             OrderPDF orderPDF = new OrderPDF();
-            orderPDF.CreateAndView(trip, evnt);
+            orderPDF.Create(trip, evnt, "order.pdf");
         }
 
         private void buttonPayments_Click(object sender, EventArgs e)

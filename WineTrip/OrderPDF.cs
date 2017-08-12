@@ -27,20 +27,12 @@ namespace WineTrip
         {
         }
 
-        public void CreateAndView(Trip trip, Event evnt)
+        public void Create(Trip trip, Event evnt, string filename)
         {
             PdfDocumentRenderer pdfRenderer = PrepareDocument(trip, evnt);
-            const string filename = "Order.pdf";
             pdfRenderer.PdfDocument.Save(filename);
-
-            Process.Start(filename); // start a viewer.
         }
 
-        public string CreateAndGet(Trip trip, Event evnt)
-        {
-            PdfDocumentRenderer pdfRenderer = PrepareDocument(trip, evnt);
-            return pdfRenderer.PdfDocument.ToString();
-        }
 
         private PdfDocumentRenderer PrepareDocument(Trip trip, Event evnt)
         {
