@@ -221,24 +221,63 @@ namespace WineTrip
             System.Diagnostics.Process.Start(SelectedEvent.selectedEvent.webSite);
         }
 
-        private void buttonOrder_Click(object sender, EventArgs e)
-        {
-
-            OrderForm orderForm = new OrderForm(trip, SelectedEvent.selectedEvent);
-
-            orderForm.Show();
-        }
-
         private void buttonBottleOrder_Click(object sender, EventArgs e)
         {
             BottleOrderForm orderForm= new BottleOrderForm(trip, SelectedEvent.selectedEvent);
-
             orderForm.ShowDialog();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             System.Windows.Automation.AutomationElement.FromHandle(Handle); // for creating the on screen keyboard if in tablet mode
+        }
+
+        private void toolStripButtonMemberUpdate_Click(object sender, EventArgs e)
+        {
+            foreach (Member member in trip.members.Where(x => x.Email != null))
+            {
+                string body = $"<p>Dear {member.Name},</p><p>Below follows a list of purchases you made and costs that were made on our winetrip. Also, a list of payments you made is included.</p>";
+                foreach(Event evnt in trip.events.Where(x => x.TotalBottleCount(member) > 0))
+                {
+                    body += $"<b>{trip.startDate.AddDays(evnt.start.day).ToShortDateString()}: {evnt.name}</b>";
+                    body += CreateHtmlEventWinePurchases(evnt, member);
+                    body += CreateHtmlEventWinePayments(evnt, member);
+                }
+                body += CreateHtmlBalance(member);
+                WebBrowser webBrowser = new WebBrowser();
+                webBrowser.webBrowserCtrl.DocumentText = body;
+                webBrowser.ShowDialog();
+                //Mailer.SendHtmlMail(member.Email, member.Name, "Wine trip report", body);
+            }
+        }
+
+        private string CreateHtmlEventWinePurchases(Event evnt, Member member)
+        {
+            string body = "<table>\n";
+            body += "<tr><th>Count</th><th>Description</th><th>Price</th></tr>\n";
+            foreach (Bottle bottle in evnt.bottles)
+            {
+                int count = bottle.orders.Where(x => x.member == member).Sum(x => x.count);
+                if (count > 0)
+                {
+                    body += $"<tr><td align=right>{count}</td><td align=left>{bottle.name} </td><td align=right>{count * bottle.price:###0.00}</td></tr> \n";
+                }
+            }
+            body += $"<tr><td align=right>{evnt.TotalBottleCount(member)}</td><td></td><td align=right>{evnt.TotalPrice(member):###0.00}</td></tr>\n";
+            body += "</table>\n";
+            return body;
+        }
+
+        private string CreateHtmlEventWinePayments(Event evnt, Member member)
+        {
+            decimal payed = evnt.payments.Where(x => x.member == member).Sum(x => x.amount);
+            return $"<p>Amount payed: {payed}</p>";
+        }
+
+        private string CreateHtmlBalance(Member member)
+        {
+            var purchase = trip.events.SelectMany(x => x.bottles).Select(bottle => new {count = bottle.orders.Where(y => y.member == member).Sum(x => x.count), price = bottle.price });
+            return $"<p>Bumber of bottles bought: {purchase.Sum(x => x.count)}</p><p>Total amount due: { purchase.Sum(x => x.price)}";
         }
     }
 }

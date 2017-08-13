@@ -55,7 +55,7 @@ namespace WineTrip.DataModel
         public Transfer transferTo { get { return trip.GetTransferToNext(this); } }
 
         // for binding the time class to a text box
-        public string startString { get { return start.ToString(); } set { start = Time.Create(day, value); } }
+        public string startString { get { return start.TimeString; } set { start = Time.Create(day, value); } }
 
         public int startMinute {  get { return start.minutes; } }
         public int endMinute { get { return end.minutes; } }

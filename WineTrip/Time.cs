@@ -61,11 +61,12 @@ namespace WineTrip
             return new Time(startTime.day, startTime.hour, startTime.minute - minutes);
         }
 
-        public override string ToString()
+        public string TimeString
         {
-            return string.Format("{0:00}:{1:00}", hour, minute);
+            get
+            {
+                return string.Format("{0:00}:{1:00}", hour, minute);
+            }
         }
-
- 
     }
 }

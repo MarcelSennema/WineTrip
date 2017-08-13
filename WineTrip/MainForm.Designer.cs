@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxRegion = new System.Windows.Forms.TextBox();
             this.tripBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -43,6 +43,7 @@
             this.calenderTabControl = new System.Windows.Forms.TabControl();
             this.detailsPanel = new System.Windows.Forms.Panel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.buttonVerifyAdress = new System.Windows.Forms.Button();
             this.buttonBottleOrder = new System.Windows.Forms.Button();
             this.buttonVisitWebSite = new System.Windows.Forms.Button();
             this.textBoxWebSite = new System.Windows.Forms.TextBox();
@@ -64,7 +65,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.mapTabControl = new System.Windows.Forms.TabControl();
             this.localMap = new System.Windows.Forms.TabPage();
-            this.buttonVerifyAdress = new System.Windows.Forms.Button();
             this.pictureBoxLocalMap = new System.Windows.Forms.PictureBox();
             this.fromMap = new System.Windows.Forms.TabPage();
             this.distanceLabelFrom = new System.Windows.Forms.Label();
@@ -75,9 +75,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dataGridViewMembers = new System.Windows.Forms.DataGridView();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phoneNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.membersBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
@@ -89,6 +86,9 @@
             this.toolStripButtonSaveAs = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonCalculate = new System.Windows.Forms.ToolStripButton();
             this.membersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toolStripButtonMemberUpdate = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.tripBindingSource)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -117,13 +117,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.membersBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox1
+            // textBoxRegion
             // 
-            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tripBindingSource, "region", true));
-            this.textBox1.Location = new System.Drawing.Point(94, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(364, 20);
-            this.textBox1.TabIndex = 0;
+            this.textBoxRegion.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tripBindingSource, "region", true));
+            this.textBoxRegion.Location = new System.Drawing.Point(94, 3);
+            this.textBoxRegion.Name = "textBoxRegion";
+            this.textBoxRegion.Size = new System.Drawing.Size(364, 20);
+            this.textBoxRegion.TabIndex = 0;
             // 
             // tripBindingSource
             // 
@@ -175,7 +175,7 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.textBoxNumberOfDays);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.textBoxRegion);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 50);
@@ -276,6 +276,16 @@
             this.splitContainer2.Size = new System.Drawing.Size(547, 709);
             this.splitContainer2.SplitterDistance = 322;
             this.splitContainer2.TabIndex = 6;
+            // 
+            // buttonVerifyAdress
+            // 
+            this.buttonVerifyAdress.Location = new System.Drawing.Point(467, 56);
+            this.buttonVerifyAdress.Name = "buttonVerifyAdress";
+            this.buttonVerifyAdress.Size = new System.Drawing.Size(77, 36);
+            this.buttonVerifyAdress.TabIndex = 4;
+            this.buttonVerifyAdress.Text = "Verify Address";
+            this.buttonVerifyAdress.UseVisualStyleBackColor = true;
+            this.buttonVerifyAdress.Click += new System.EventHandler(this.buttonVerifyAdress_Click);
             // 
             // buttonBottleOrder
             // 
@@ -489,16 +499,6 @@
             this.localMap.Text = "Local map";
             this.localMap.UseVisualStyleBackColor = true;
             // 
-            // buttonVerifyAdress
-            // 
-            this.buttonVerifyAdress.Location = new System.Drawing.Point(467, 56);
-            this.buttonVerifyAdress.Name = "buttonVerifyAdress";
-            this.buttonVerifyAdress.Size = new System.Drawing.Size(77, 36);
-            this.buttonVerifyAdress.TabIndex = 4;
-            this.buttonVerifyAdress.Text = "Verify Address";
-            this.buttonVerifyAdress.UseVisualStyleBackColor = true;
-            this.buttonVerifyAdress.Click += new System.EventHandler(this.buttonVerifyAdress_Click);
-            // 
             // pictureBoxLocalMap
             // 
             this.pictureBoxLocalMap.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.eventBindingSource, "map", true));
@@ -606,32 +606,12 @@
             this.dataGridViewMembers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewMembers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameDataGridViewTextBoxColumn,
-            this.emailDataGridViewTextBoxColumn,
-            this.phoneNumberDataGridViewTextBoxColumn});
+            this.emailDataGridViewTextBoxColumn});
             this.dataGridViewMembers.DataSource = this.membersBindingSource1;
             this.dataGridViewMembers.Location = new System.Drawing.Point(6, 98);
             this.dataGridViewMembers.Name = "dataGridViewMembers";
-            this.dataGridViewMembers.Size = new System.Drawing.Size(452, 633);
+            this.dataGridViewMembers.Size = new System.Drawing.Size(452, 631);
             this.dataGridViewMembers.TabIndex = 3;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            // 
-            // phoneNumberDataGridViewTextBoxColumn
-            // 
-            this.phoneNumberDataGridViewTextBoxColumn.DataPropertyName = "PhoneNumber";
-            this.phoneNumberDataGridViewTextBoxColumn.HeaderText = "PhoneNumber";
-            this.phoneNumberDataGridViewTextBoxColumn.Name = "phoneNumberDataGridViewTextBoxColumn";
             // 
             // membersBindingSource1
             // 
@@ -702,7 +682,8 @@
             this.toolStripButtonOpen,
             this.toolStripButtonSave,
             this.toolStripButtonSaveAs,
-            this.toolStripButtonCalculate});
+            this.toolStripButtonCalculate,
+            this.toolStripButtonMemberUpdate});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(1577, 50);
@@ -717,7 +698,7 @@
             this.toolStripButtonSaveAs.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSaveAs.Name = "toolStripButtonSaveAs";
             this.toolStripButtonSaveAs.Size = new System.Drawing.Size(47, 47);
-            this.toolStripButtonSaveAs.Text = "Save As";
+            this.toolStripButtonSaveAs.Text = "Save as";
             this.toolStripButtonSaveAs.Click += new System.EventHandler(this.toolStripButtonSaveAs_Click);
             // 
             // toolStripButtonCalculate
@@ -726,8 +707,8 @@
             this.toolStripButtonCalculate.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCalculate.Image")));
             this.toolStripButtonCalculate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonCalculate.Name = "toolStripButtonCalculate";
-            this.toolStripButtonCalculate.Size = new System.Drawing.Size(60, 47);
-            this.toolStripButtonCalculate.Text = "Calculate";
+            this.toolStripButtonCalculate.Size = new System.Drawing.Size(91, 47);
+            this.toolStripButtonCalculate.Text = "Calculate route";
             this.toolStripButtonCalculate.ToolTipText = "Calculate driving distances and times";
             this.toolStripButtonCalculate.Click += new System.EventHandler(this.toolStripButtonCalculate_Click);
             // 
@@ -735,6 +716,31 @@
             // 
             this.membersBindingSource.DataMember = "Members";
             this.membersBindingSource.DataSource = this.tripBindingSource;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // toolStripButtonMemberUpdate
+            // 
+            this.toolStripButtonMemberUpdate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonMemberUpdate.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonMemberUpdate.Image")));
+            this.toolStripButtonMemberUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonMemberUpdate.Name = "toolStripButtonMemberUpdate";
+            this.toolStripButtonMemberUpdate.Size = new System.Drawing.Size(125, 47);
+            this.toolStripButtonMemberUpdate.Text = "Send member update";
+            this.toolStripButtonMemberUpdate.ToolTipText = "Send member update";
+            this.toolStripButtonMemberUpdate.Click += new System.EventHandler(this.toolStripButtonMemberUpdate_Click);
             // 
             // MainForm
             // 
@@ -786,7 +792,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxRegion;
         private System.Windows.Forms.BindingSource tripBindingSource;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.StatusStrip statusStrip1;
@@ -799,9 +805,6 @@
         private System.Windows.Forms.TextBox textBoxNumberOfDays;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dataGridViewMembers;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn phoneNumberDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource membersBindingSource;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -845,6 +848,9 @@
         private System.Windows.Forms.Button buttonVisitWebSite;
         private System.Windows.Forms.ToolStripButton toolStripButtonSaveAs;
         private System.Windows.Forms.Button buttonBottleOrder;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ToolStripButton toolStripButtonMemberUpdate;
     }
 }
 

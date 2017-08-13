@@ -467,38 +467,7 @@ namespace WineTrip
             string filename = "order.pdf";
             OrderPDF orderPDF = new OrderPDF();
             orderPDF.Create(trip, evnt,filename);
-
-            MailAddress fromAddress = new MailAddress("marcelsennema@gmail.com", "Wine trip solutions");
-            MailAddress toAddress = new MailAddress("marcel@sennema.net", "Marcel Sennema");
-            string password = ConfigurationManager.AppSettings["GooglePassword"];
-
-            var smtp = new SmtpClient
-            {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromAddress.Address, password)
-            };
-            using (var message = new MailMessage(fromAddress, toAddress)
-            {
-                Subject = "Order",
-                Body = "Dear Sir or Madam,\n\nAttached you will find the order of our group.\n\nCheers,\nMarcel Sennema\n"
-            })
-            {
-                FileInfo fileInfo = new FileInfo(filename);
-                Attachment attachment = new Attachment(filename, MediaTypeNames.Application.Octet);
-                ContentDisposition disposition = attachment.ContentDisposition;
-                disposition.CreationDate = fileInfo.CreationTime;
-                disposition.ModificationDate = fileInfo.LastWriteTime;
-                disposition.ReadDate = fileInfo.LastAccessTime;
-                disposition.FileName = Path.GetFileName(filename);
-                disposition.Size = fileInfo.Length;
-                disposition.DispositionType = DispositionTypeNames.Attachment;
-                message.Attachments.Add(attachment);
-                smtp.Send(message);
-            }
+            Mailer.SendMail(evnt.eMail, evnt.name, "Order", "Dear Sir or Madam,\n\nAttached you will find the order of our group.\n\nCheers,\nMarcel Sennema\n", filename);
         }
     }
 }
