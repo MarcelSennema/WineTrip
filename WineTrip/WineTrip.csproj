@@ -79,17 +79,18 @@
     <Compile Include="BottleOrderForm.Designer.cs">
       <DependentUpon>BottleOrderForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CostsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CostsForm.Designer.cs">
+      <DependentUpon>CostsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataModel\Payment.cs" />
     <Compile Include="DataModel\Settings.cs" />
     <Compile Include="DataModel\Transfer.cs" />
     <Compile Include="GoogleMaps.cs" />
     <Compile Include="Mailer.cs" />
-    <Compile Include="OrderForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="OrderForm.Designer.cs">
-      <DependentUpon>OrderForm.cs</DependentUpon>
-    </Compile>
+    <Compile Include="MemberUpdateMessage.cs" />
     <Compile Include="OrderPDF.cs" />
     <Compile Include="PaymentControl.cs">
       <SubType>UserControl</SubType>
@@ -162,11 +163,11 @@
     <EmbeddedResource Include="BottleOrderForm.resx">
       <DependentUpon>BottleOrderForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CostsForm.resx">
+      <DependentUpon>CostsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OrderForm.resx">
-      <DependentUpon>OrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PaymentControl.resx">
       <DependentUpon>PaymentControl.cs</DependentUpon>
@@ -228,6 +229,8 @@
     <Content Include="PageLogo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\StyleSheet.txt" />
+    <None Include="Resources\StyleSheet.ico" />
     <None Include="Resources\logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,6 +1,6 @@
 ﻿namespace WineTrip
 {
-    partial class OrderForm
+    partial class WineTastingForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WineTastingForm));
             this.rowHeaderSplitContainer = new System.Windows.Forms.SplitContainer();
             this.rowHeaderLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.gridPanel = new System.Windows.Forms.Panel();

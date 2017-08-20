@@ -44,7 +44,7 @@
             this.detailsPanel = new System.Windows.Forms.Panel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.buttonVerifyAdress = new System.Windows.Forms.Button();
-            this.buttonBottleOrder = new System.Windows.Forms.Button();
+            this.buttonWineTasting = new System.Windows.Forms.Button();
             this.buttonVisitWebSite = new System.Windows.Forms.Button();
             this.textBoxWebSite = new System.Windows.Forms.TextBox();
             this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -75,6 +75,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dataGridViewMembers = new System.Windows.Forms.DataGridView();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.membersBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
@@ -85,10 +87,9 @@
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonSaveAs = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonCalculate = new System.Windows.Forms.ToolStripButton();
-            this.membersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStripButtonMemberUpdate = new System.Windows.Forms.ToolStripButton();
+            this.membersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.buttonOtherCosts = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tripBindingSource)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -251,8 +252,9 @@
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.buttonOtherCosts);
             this.splitContainer2.Panel1.Controls.Add(this.buttonVerifyAdress);
-            this.splitContainer2.Panel1.Controls.Add(this.buttonBottleOrder);
+            this.splitContainer2.Panel1.Controls.Add(this.buttonWineTasting);
             this.splitContainer2.Panel1.Controls.Add(this.buttonVisitWebSite);
             this.splitContainer2.Panel1.Controls.Add(this.textBoxWebSite);
             this.splitContainer2.Panel1.Controls.Add(this.label12);
@@ -287,16 +289,16 @@
             this.buttonVerifyAdress.UseVisualStyleBackColor = true;
             this.buttonVerifyAdress.Click += new System.EventHandler(this.buttonVerifyAdress_Click);
             // 
-            // buttonBottleOrder
+            // buttonWineTasting
             // 
-            this.buttonBottleOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonBottleOrder.Location = new System.Drawing.Point(0, 284);
-            this.buttonBottleOrder.Name = "buttonBottleOrder";
-            this.buttonBottleOrder.Size = new System.Drawing.Size(77, 36);
-            this.buttonBottleOrder.TabIndex = 10;
-            this.buttonBottleOrder.Text = "Order";
-            this.buttonBottleOrder.UseVisualStyleBackColor = true;
-            this.buttonBottleOrder.Click += new System.EventHandler(this.buttonBottleOrder_Click);
+            this.buttonWineTasting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonWineTasting.Location = new System.Drawing.Point(0, 284);
+            this.buttonWineTasting.Name = "buttonWineTasting";
+            this.buttonWineTasting.Size = new System.Drawing.Size(77, 36);
+            this.buttonWineTasting.TabIndex = 10;
+            this.buttonWineTasting.Text = "Wines";
+            this.buttonWineTasting.UseVisualStyleBackColor = true;
+            this.buttonWineTasting.Click += new System.EventHandler(this.buttonBottleOrder_Click);
             // 
             // buttonVisitWebSite
             // 
@@ -613,6 +615,20 @@
             this.dataGridViewMembers.Size = new System.Drawing.Size(452, 631);
             this.dataGridViewMembers.TabIndex = 3;
             // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.Width = 200;
+            // 
             // membersBindingSource1
             // 
             this.membersBindingSource1.DataMember = "members";
@@ -712,25 +728,6 @@
             this.toolStripButtonCalculate.ToolTipText = "Calculate driving distances and times";
             this.toolStripButtonCalculate.Click += new System.EventHandler(this.toolStripButtonCalculate_Click);
             // 
-            // membersBindingSource
-            // 
-            this.membersBindingSource.DataMember = "Members";
-            this.membersBindingSource.DataSource = this.tripBindingSource;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            this.emailDataGridViewTextBoxColumn.Width = 200;
-            // 
             // toolStripButtonMemberUpdate
             // 
             this.toolStripButtonMemberUpdate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -741,6 +738,22 @@
             this.toolStripButtonMemberUpdate.Text = "Send member update";
             this.toolStripButtonMemberUpdate.ToolTipText = "Send member update";
             this.toolStripButtonMemberUpdate.Click += new System.EventHandler(this.toolStripButtonMemberUpdate_Click);
+            // 
+            // membersBindingSource
+            // 
+            this.membersBindingSource.DataMember = "Members";
+            this.membersBindingSource.DataSource = this.tripBindingSource;
+            // 
+            // buttonOtherCosts
+            // 
+            this.buttonOtherCosts.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonOtherCosts.Location = new System.Drawing.Point(83, 284);
+            this.buttonOtherCosts.Name = "buttonOtherCosts";
+            this.buttonOtherCosts.Size = new System.Drawing.Size(77, 36);
+            this.buttonOtherCosts.TabIndex = 12;
+            this.buttonOtherCosts.Text = "Other costs";
+            this.buttonOtherCosts.UseVisualStyleBackColor = true;
+            this.buttonOtherCosts.Click += new System.EventHandler(this.buttonOtherCosts_Click);
             // 
             // MainForm
             // 
@@ -847,10 +860,11 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button buttonVisitWebSite;
         private System.Windows.Forms.ToolStripButton toolStripButtonSaveAs;
-        private System.Windows.Forms.Button buttonBottleOrder;
+        private System.Windows.Forms.Button buttonWineTasting;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
         private System.Windows.Forms.ToolStripButton toolStripButtonMemberUpdate;
+        private System.Windows.Forms.Button buttonOtherCosts;
     }
 }
 

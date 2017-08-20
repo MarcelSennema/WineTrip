@@ -469,5 +469,11 @@ namespace WineTrip
             orderPDF.Create(trip, evnt,filename);
             Mailer.SendMail(evnt.eMail, evnt.name, "Order", "Dear Sir or Madam,\n\nAttached you will find the order of our group.\n\nCheers,\nMarcel Sennema\n", filename);
         }
+
+        private void toolStripButtonPayments_Click(object sender, EventArgs e)
+        {
+            PaymentForm paymentForm = new PaymentForm(trip, evnt.TotalPrice(null), evnt.tastingPayments);
+            paymentForm.ShowDialog();
+        }
     }
 }

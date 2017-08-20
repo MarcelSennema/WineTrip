@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -14,20 +15,22 @@ namespace WineTrip
     public partial class PaymentForm : Form
     {
         private Trip trip;
-        private Event evnt;
-        public PaymentForm(Trip trip, Event evnt)
+        private ObservableCollection<Payment> payments;
+        decimal totalPrice;
+        public PaymentForm(Trip trip, Decimal totalPrice, ObservableCollection<Payment> payments)
         {
             this.trip = trip;
-            this.evnt = evnt;
+            this.payments = payments;
+            this.totalPrice = totalPrice;
             InitializeComponent();
             Icon = Properties.Resources.logo;
             foreach(Member member in trip.members)
             {
-                Payment payment = evnt.payments.Where(x => x.member == member).FirstOrDefault();
+                Payment payment = payments.Where(x => x.member == member).FirstOrDefault();
                 if (payment == null)
                 {
                     payment = new Payment() { member = member };
-                    evnt.payments.Add(payment);
+                    payments.Add(payment);
                 }
                 panelPaymentControls.Controls.Add(new PaymentControl(payment, PaymentButtonPressed));
                 panelPaymentControls.RowCount++;
@@ -36,7 +39,7 @@ namespace WineTrip
 
         private void PaymentButtonPressed(Payment payment)
         {
-            payment.amount = evnt.TotalPrice(null) - evnt.payments.Where(x => x.member != payment.member).Sum(x => x.amount);
+            payment.amount = totalPrice - payments.Where(x => x.member != payment.member).Sum(x => x.amount);
         }
 
         /// <summary>
@@ -46,9 +49,9 @@ namespace WineTrip
         /// <param name="e"></param>
         private void PaymentForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            List<Payment> emptyPayments = evnt.payments.Where(x => x.amount == 0).ToList();
+            List<Payment> emptyPayments = payments.Where(x => x.amount == 0).ToList();
             foreach (Payment payment in emptyPayments)
-                evnt.payments.Remove(payment);
+                payments.Remove(payment);
         }
     }
 }

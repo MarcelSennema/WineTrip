@@ -12,7 +12,7 @@ using WineTrip.DataModel;
 
 namespace WineTrip
 {
-    public partial class OrderForm : Form
+    public partial class WineTastingForm : Form
     {
         private static Brush selectedOrderRectangleBrush { get; } = Brushes.Bisque;
         private static Brush orderFontBrush { get; } = Brushes.Black;
@@ -50,7 +50,7 @@ namespace WineTrip
         private UserHeaderControl currentColumn = null;
         private BottleRowHeaderControl currentRow = null;
 
-        public OrderForm(Trip trip, Event evnt)
+        public WineTastingForm(Trip trip, Event evnt)
         {
             Cursor.Current = Cursors.WaitCursor;
             this.trip = trip;

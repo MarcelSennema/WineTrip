@@ -47,7 +47,16 @@ namespace WineTrip.DataModel
         [DataMember]
         public ObservableCollection<Bottle> bottles { get; set; } = new ObservableCollection<Bottle>();
         [DataMember]
-        public ObservableCollection<Payment> payments { get; set; } = new ObservableCollection<Payment>();
+        public ObservableCollection<Payment> tastingPayments { get; set; } = new ObservableCollection<Payment>();
+        [DataMember]
+        public string costsDescription { get; set; }
+        [DataMember]
+        public decimal costs { get; set; }
+        [DataMember]
+        public ObservableCollection<Member> costsParticipatingMembers { get; set; } = new ObservableCollection<Member>();
+        [DataMember]
+        public ObservableCollection<Payment> costsPayments { get; set; } = new ObservableCollection<Payment>();
+
 
         public int day { get { return start.day; } set { start.day = (byte)value; } }
 

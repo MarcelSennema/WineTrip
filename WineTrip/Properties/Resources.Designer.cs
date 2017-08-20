@@ -69,5 +69,17 @@ namespace WineTrip.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;style type=&quot;text/css&quot;&gt;
+        ///	.border-b {border: 1px solid #ccc; border-width: 0 0 0 1px;}
+        ///	.border-tb {border: 1px solid #ccc; border-width: 0 1px 0 1px;}
+        ///&lt;/style&gt;.
+        /// </summary>
+        internal static string StyleSheet {
+            get {
+                return ResourceManager.GetString("StyleSheet", resourceCulture);
+            }
+        }
     }
 }

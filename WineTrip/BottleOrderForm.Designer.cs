@@ -30,15 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BottleOrderForm));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButtonCreatePDF = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonPayments = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonShowPrice = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonPayments = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonCreatePDF = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonSendOrderMail = new System.Windows.Forms.ToolStripButton();
             this.gridPanel = new System.Windows.Forms.Panel();
             this.topPanel = new System.Windows.Forms.Panel();
             this.buttonAddBottle = new System.Windows.Forms.Button();
             this.bodyPanel = new System.Windows.Forms.Panel();
             this.bottomPanel = new System.Windows.Forms.Panel();
-            this.toolStripButtonSendOrderMail = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.topPanel.SuspendLayout();
             this.bodyPanel.SuspendLayout();
@@ -57,26 +57,6 @@
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripButtonCreatePDF
-            // 
-            this.toolStripButtonCreatePDF.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonCreatePDF.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCreatePDF.Image")));
-            this.toolStripButtonCreatePDF.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonCreatePDF.Name = "toolStripButtonCreatePDF";
-            this.toolStripButtonCreatePDF.Size = new System.Drawing.Size(60, 47);
-            this.toolStripButtonCreatePDF.Text = "View PDF";
-            this.toolStripButtonCreatePDF.ToolTipText = "View Order PDF";
-            this.toolStripButtonCreatePDF.Click += new System.EventHandler(this.toolStripButtonCreatePDF_Click);
-            // 
-            // toolStripButtonPayments
-            // 
-            this.toolStripButtonPayments.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonPayments.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonPayments.Image")));
-            this.toolStripButtonPayments.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonPayments.Name = "toolStripButtonPayments";
-            this.toolStripButtonPayments.Size = new System.Drawing.Size(63, 47);
-            this.toolStripButtonPayments.Text = "Payments";
-            // 
             // toolStripButtonShowPrice
             // 
             this.toolStripButtonShowPrice.AutoSize = false;
@@ -91,6 +71,38 @@
             this.toolStripButtonShowPrice.Text = "Show Price";
             this.toolStripButtonShowPrice.ToolTipText = "Show price";
             this.toolStripButtonShowPrice.Click += new System.EventHandler(this.toolStripButtonShowPrice_Click);
+            // 
+            // toolStripButtonPayments
+            // 
+            this.toolStripButtonPayments.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonPayments.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonPayments.Image")));
+            this.toolStripButtonPayments.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonPayments.Name = "toolStripButtonPayments";
+            this.toolStripButtonPayments.Size = new System.Drawing.Size(63, 47);
+            this.toolStripButtonPayments.Text = "Payments";
+            this.toolStripButtonPayments.Click += new System.EventHandler(this.toolStripButtonPayments_Click);
+            // 
+            // toolStripButtonCreatePDF
+            // 
+            this.toolStripButtonCreatePDF.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonCreatePDF.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCreatePDF.Image")));
+            this.toolStripButtonCreatePDF.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonCreatePDF.Name = "toolStripButtonCreatePDF";
+            this.toolStripButtonCreatePDF.Size = new System.Drawing.Size(60, 47);
+            this.toolStripButtonCreatePDF.Text = "View PDF";
+            this.toolStripButtonCreatePDF.ToolTipText = "View Order PDF";
+            this.toolStripButtonCreatePDF.Click += new System.EventHandler(this.toolStripButtonCreatePDF_Click);
+            // 
+            // toolStripButtonSendOrderMail
+            // 
+            this.toolStripButtonSendOrderMail.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonSendOrderMail.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSendOrderMail.Image")));
+            this.toolStripButtonSendOrderMail.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSendOrderMail.Name = "toolStripButtonSendOrderMail";
+            this.toolStripButtonSendOrderMail.Size = new System.Drawing.Size(96, 47);
+            this.toolStripButtonSendOrderMail.Text = "Send Order Mail";
+            this.toolStripButtonSendOrderMail.ToolTipText = "Send PDF by Mail";
+            this.toolStripButtonSendOrderMail.Click += new System.EventHandler(this.toolStripButtonSendOrderMail_Click);
             // 
             // gridPanel
             // 
@@ -143,17 +155,6 @@
             this.bottomPanel.Size = new System.Drawing.Size(1324, 53);
             this.bottomPanel.TabIndex = 0;
             this.bottomPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.bottomPanel_Paint);
-            // 
-            // toolStripButtonSendOrderMail
-            // 
-            this.toolStripButtonSendOrderMail.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonSendOrderMail.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSendOrderMail.Image")));
-            this.toolStripButtonSendOrderMail.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonSendOrderMail.Name = "toolStripButtonSendOrderMail";
-            this.toolStripButtonSendOrderMail.Size = new System.Drawing.Size(96, 47);
-            this.toolStripButtonSendOrderMail.Text = "Send Order Mail";
-            this.toolStripButtonSendOrderMail.ToolTipText = "Send PDF by Mail";
-            this.toolStripButtonSendOrderMail.Click += new System.EventHandler(this.toolStripButtonSendOrderMail_Click);
             // 
             // BottleOrderForm
             // 
