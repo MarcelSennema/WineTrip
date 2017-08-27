@@ -11,17 +11,15 @@ using WineTrip.DataModel;
 
 namespace WineTrip
 {
-    public partial class CostsForm : Form
+    public partial class ExpenseForm : Form
     {
 
         private Trip trip;
         private Event evnt;
-        public CostsForm(Trip trip, Event evnt)
+        public ExpenseForm(Trip trip, Event evnt)
         {
             this.trip = trip;
             this.evnt = evnt;
-            if (evnt.costsParticipatingMembers == null) // backward compatible...
-                evnt.costsParticipatingMembers = new System.Collections.ObjectModel.ObservableCollection<Member>();
             InitializeComponent();
             Icon = Properties.Resources.logo;
             eventBindingSource.DataSource = evnt;
@@ -32,7 +30,7 @@ namespace WineTrip
                 CheckBox checkbox = new CheckBox();
                 checkbox.Text = member.Name;
                 checkbox.Tag = member;
-                checkbox.Checked = evnt.costsParticipatingMembers.Count == 0 || evnt.costsParticipatingMembers.Contains(member); // default to participating
+                checkbox.Checked = evnt.expenseParticipatingMembers.Count == 0 || evnt.expenseParticipatingMembers.Contains(member); // default to participating
                 panelMemberCheckboxes.Controls.Add(checkbox, column, row);
                 panelMemberCheckboxes.RowCount += column;
                 row += column; // only increment if we are in column number 1
@@ -40,15 +38,21 @@ namespace WineTrip
             }
         }
 
-        private void CostsForm_FormClosed(object sender, FormClosedEventArgs e)
+        private void ExpensesForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Validate();
-            evnt.costsParticipatingMembers = new System.Collections.ObjectModel.ObservableCollection<Member>();
+            evnt.expenseParticipatingMembers = new System.Collections.ObjectModel.ObservableCollection<Member>();
             foreach(Control control in panelMemberCheckboxes.Controls)
             {
                 if (control is CheckBox && ((CheckBox)control).Checked && control.Tag is Member)
-                    evnt.costsParticipatingMembers.Add((Member)control.Tag);
+                    evnt.expenseParticipatingMembers.Add((Member)control.Tag);
             }
+        }
+
+        private void buttonPayment_Click(object sender, EventArgs e)
+        {
+            PaymentForm paymentForm = new PaymentForm(trip, evnt.expense, evnt.expensePayments);
+            paymentForm.ShowDialog();
         }
     }
 }

@@ -43,6 +43,7 @@
             this.calenderTabControl = new System.Windows.Forms.TabControl();
             this.detailsPanel = new System.Windows.Forms.Panel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.buttonExpense = new System.Windows.Forms.Button();
             this.buttonVerifyAdress = new System.Windows.Forms.Button();
             this.buttonWineTasting = new System.Windows.Forms.Button();
             this.buttonVisitWebSite = new System.Windows.Forms.Button();
@@ -89,7 +90,6 @@
             this.toolStripButtonCalculate = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonMemberUpdate = new System.Windows.Forms.ToolStripButton();
             this.membersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.buttonOtherCosts = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tripBindingSource)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -252,7 +252,7 @@
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.buttonOtherCosts);
+            this.splitContainer2.Panel1.Controls.Add(this.buttonExpense);
             this.splitContainer2.Panel1.Controls.Add(this.buttonVerifyAdress);
             this.splitContainer2.Panel1.Controls.Add(this.buttonWineTasting);
             this.splitContainer2.Panel1.Controls.Add(this.buttonVisitWebSite);
@@ -278,6 +278,17 @@
             this.splitContainer2.Size = new System.Drawing.Size(547, 709);
             this.splitContainer2.SplitterDistance = 322;
             this.splitContainer2.TabIndex = 6;
+            // 
+            // buttonExpense
+            // 
+            this.buttonExpense.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonExpense.Location = new System.Drawing.Point(83, 284);
+            this.buttonExpense.Name = "buttonExpense";
+            this.buttonExpense.Size = new System.Drawing.Size(77, 36);
+            this.buttonExpense.TabIndex = 12;
+            this.buttonExpense.Text = "Expense";
+            this.buttonExpense.UseVisualStyleBackColor = true;
+            this.buttonExpense.Click += new System.EventHandler(this.buttonExpense_Click);
             // 
             // buttonVerifyAdress
             // 
@@ -744,17 +755,6 @@
             this.membersBindingSource.DataMember = "Members";
             this.membersBindingSource.DataSource = this.tripBindingSource;
             // 
-            // buttonOtherCosts
-            // 
-            this.buttonOtherCosts.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonOtherCosts.Location = new System.Drawing.Point(83, 284);
-            this.buttonOtherCosts.Name = "buttonOtherCosts";
-            this.buttonOtherCosts.Size = new System.Drawing.Size(77, 36);
-            this.buttonOtherCosts.TabIndex = 12;
-            this.buttonOtherCosts.Text = "Other costs";
-            this.buttonOtherCosts.UseVisualStyleBackColor = true;
-            this.buttonOtherCosts.Click += new System.EventHandler(this.buttonOtherCosts_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -864,7 +864,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
         private System.Windows.Forms.ToolStripButton toolStripButtonMemberUpdate;
-        private System.Windows.Forms.Button buttonOtherCosts;
+        private System.Windows.Forms.Button buttonExpense;
     }
 }
 

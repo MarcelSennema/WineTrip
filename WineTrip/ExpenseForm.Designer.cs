@@ -1,6 +1,6 @@
 ﻿namespace WineTrip
 {
-    partial class CostsForm
+    partial class ExpenseForm
     {
         /// <summary>
         /// Required designer variable.
@@ -50,7 +50,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.eventBindingSource, "costs", true));
+            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.eventBindingSource, "expense", true));
             this.textBox1.Location = new System.Drawing.Point(157, 37);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
@@ -65,6 +65,7 @@
             this.buttonPayment.TabIndex = 2;
             this.buttonPayment.Text = "Payment";
             this.buttonPayment.UseVisualStyleBackColor = true;
+            this.buttonPayment.Click += new System.EventHandler(this.buttonPayment_Click);
             // 
             // panelMemberCheckboxes
             // 
@@ -93,7 +94,7 @@
             // 
             // textBoxDescription
             // 
-            this.textBoxDescription.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.eventBindingSource, "costsDescription", true));
+            this.textBoxDescription.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.eventBindingSource, "expenseDescription", true));
             this.textBoxDescription.Location = new System.Drawing.Point(157, 11);
             this.textBoxDescription.Name = "textBoxDescription";
             this.textBoxDescription.Size = new System.Drawing.Size(254, 20);
@@ -103,7 +104,7 @@
             // 
             this.eventBindingSource.DataSource = typeof(WineTrip.DataModel.Event);
             // 
-            // CostsForm
+            // ExpenseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -115,9 +116,9 @@
             this.Controls.Add(this.buttonPayment);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
-            this.Name = "CostsForm";
-            this.Text = "Costs";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CostsForm_FormClosed);
+            this.Name = "ExpenseForm";
+            this.Text = "Expense";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ExpensesForm_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

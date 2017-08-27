@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.nameTextBox = new System.Windows.Forms.TextBox();
+            this.bottlesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.priceTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.volumeTextBox = new System.Windows.Forms.TextBox();
@@ -43,7 +44,6 @@
             this.radioButtonWhite = new System.Windows.Forms.RadioButton();
             this.radioButtonRose = new System.Windows.Forms.RadioButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.bottlesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label5 = new System.Windows.Forms.Label();
             this.textBoxGrape = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.bottlesBindingSource)).BeginInit();
@@ -68,6 +68,10 @@
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(536, 20);
             this.nameTextBox.TabIndex = 0;
+            // 
+            // bottlesBindingSource
+            // 
+            this.bottlesBindingSource.DataSource = typeof(WineTrip.DataModel.Bottle);
             // 
             // priceTextBox
             // 
@@ -184,10 +188,6 @@
             this.textBox1.Size = new System.Drawing.Size(603, 179);
             this.textBox1.TabIndex = 10;
             // 
-            // bottlesBindingSource
-            // 
-            this.bottlesBindingSource.DataSource = typeof(WineTrip.DataModel.Bottle);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -217,7 +217,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(627, 354);
-            this.ControlBox = false;
             this.Controls.Add(this.textBoxGrape);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBox1);
@@ -234,7 +233,7 @@
             this.Controls.Add(this.vintageTextBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "BottleDetailForm";
@@ -242,8 +241,7 @@
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "BottleDetailForm";
-            this.Deactivate += new System.EventHandler(this.BottleDetailForm_Deactivate);
+            this.Text = "Wine description";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.BottleDetailForm_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.bottlesBindingSource)).EndInit();
             this.ResumeLayout(false);

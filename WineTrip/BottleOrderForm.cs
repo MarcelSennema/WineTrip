@@ -382,6 +382,7 @@ namespace WineTrip
 
         private void topPanel_Paint(object sender, PaintEventArgs e)
         {
+            CalcColumnWidths();
             e.Graphics.DrawLine(gridPen, 0, topPanel.ClientRectangle.Height-1, topPanel.ClientRectangle.Width, topPanel.ClientRectangle.Height-1);
             Rectangle rect;
             int column = 1;
@@ -403,6 +404,7 @@ namespace WineTrip
 
         private void bottomPanel_Paint(object sender, PaintEventArgs e)
         {
+            CalcColumnWidths();
             e.Graphics.DrawLine(gridPen, 0, 0, bottomPanel.ClientRectangle.Width, 0);
             Rectangle rect;
             int column = 0;
@@ -445,7 +447,7 @@ namespace WineTrip
             evnt.bottles.Add(bottle);
             CalcRowHeights(headerColumnWidth);
             BottleDetailForm bottleDetailForm = new BottleDetailForm(bottle, RefreshGrid, this);
-            bottleDetailForm.Show();
+            bottleDetailForm.ShowDialog();
         }
 
         private void RefreshGrid()

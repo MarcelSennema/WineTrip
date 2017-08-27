@@ -29,11 +29,6 @@ namespace WineTrip
             radioButtonRose.Checked = (bottle.wine == Bottle.Wine.rose);
         }
 
-        private void BottleDetailForm_Deactivate(object sender, EventArgs e)
-        {
-            Close();
-        }
-
         private void BottleDetailForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Validate();

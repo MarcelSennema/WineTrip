@@ -60,11 +60,18 @@ namespace WineTrip
                 trip = (Trip)serializer.ReadObject(stream);
 
             // to hanlde project files that do not yet contain payment information we must initilise the payment list.
-            foreach(Event evnt in trip.events)
+            foreach (Event evnt in trip.events)
+            {
                 if(evnt.tastingPayments == null)
                     evnt.tastingPayments = new ObservableCollection<Payment>();
+                if(evnt.expenseParticipatingMembers == null)
+                    evnt.expenseParticipatingMembers = new ObservableCollection<Member>();
+                if (evnt.expensePayments == null)
+                    evnt.expensePayments = new ObservableCollection<Payment>();
+            }
             tripBindingSource.DataSource = trip;
-            InitCalenderTab();
+
+           InitCalenderTab();
         }
 
         private void SaveModel(string filePath)
@@ -244,10 +251,10 @@ namespace WineTrip
             }
         }
 
-        private void buttonOtherCosts_Click(object sender, EventArgs e)
+        private void buttonExpense_Click(object sender, EventArgs e)
         {
-            CostsForm costForm = new CostsForm(trip, SelectedEvent.selectedEvent);
-            costForm.ShowDialog();
+            ExpenseForm expenseForm = new ExpenseForm(trip, SelectedEvent.selectedEvent);
+            expenseForm.ShowDialog();
         }
     }
 }

@@ -79,11 +79,11 @@
     <Compile Include="BottleOrderForm.Designer.cs">
       <DependentUpon>BottleOrderForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CostsForm.cs">
+    <Compile Include="ExpenseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CostsForm.Designer.cs">
-      <DependentUpon>CostsForm.cs</DependentUpon>
+    <Compile Include="ExpenseForm.Designer.cs">
+      <DependentUpon>ExpenseForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DataModel\Payment.cs" />
     <Compile Include="DataModel\Settings.cs" />
@@ -163,8 +163,8 @@
     <EmbeddedResource Include="BottleOrderForm.resx">
       <DependentUpon>BottleOrderForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CostsForm.resx">
-      <DependentUpon>CostsForm.cs</DependentUpon>
+    <EmbeddedResource Include="ExpenseForm.resx">
+      <DependentUpon>ExpenseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
