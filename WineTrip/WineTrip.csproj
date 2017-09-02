@@ -145,6 +145,7 @@
     <Compile Include="TotalHeaderControl.Designer.cs">
       <DependentUpon>TotalHeaderControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="RoadBookPDF.cs" />
     <Compile Include="UserHeaderControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

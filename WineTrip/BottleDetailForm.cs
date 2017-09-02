@@ -17,8 +17,11 @@ namespace WineTrip
         public delegate void Formclosed();
         private Formclosed formclosed;
 
-        public BottleDetailForm(Bottle bottle, Formclosed formclosed, Form parentForm)
+        private Trip trip;
+
+        public BottleDetailForm(Trip trip, Bottle bottle, Formclosed formclosed, Form parentForm)
         {
+            this.trip = trip;
             this.formclosed += formclosed;
             InitializeComponent();
             StartPosition = FormStartPosition.Manual;
@@ -27,6 +30,11 @@ namespace WineTrip
             radioButtonRed.Checked = (bottle.wine == Bottle.Wine.red);
             radioButtonWhite.Checked = (bottle.wine == Bottle.Wine.white);
             radioButtonRose.Checked = (bottle.wine == Bottle.Wine.rose);
+            AutoCompleteStringCollection grapeVarieties = new AutoCompleteStringCollection();
+            grapeVarieties.AddRange(trip.events.SelectMany(x => x.bottles).Where(x => x.grape != null && x.grape != string.Empty).Select(x => x.grape).ToArray());
+            textBoxGrape.AutoCompleteCustomSource = grapeVarieties;
+            textBoxGrape.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            textBoxGrape.AutoCompleteSource = AutoCompleteSource.CustomSource;
         }
 
         private void BottleDetailForm_FormClosed(object sender, FormClosedEventArgs e)

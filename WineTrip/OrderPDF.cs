@@ -30,7 +30,14 @@ namespace WineTrip
         public void Create(Trip trip, Event evnt, string filename)
         {
             PdfDocumentRenderer pdfRenderer = PrepareDocument(trip, evnt);
-            pdfRenderer.PdfDocument.Save(filename);
+            try
+            {
+                pdfRenderer.PdfDocument.Save(filename);
+            }
+            catch(Exception)
+            {
+                System.Windows.Forms.MessageBox.Show("Can not update previes, file may be in use...");
+            }
         }
 
 

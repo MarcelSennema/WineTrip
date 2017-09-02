@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -59,7 +60,7 @@ namespace WineTrip
             using (FileStream stream = File.OpenRead(filePath))
                 trip = (Trip)serializer.ReadObject(stream);
 
-            // to hanlde project files that do not yet contain payment information we must initilise the payment list.
+            // backward compatibility initialisers
             foreach (Event evnt in trip.events)
             {
                 if(evnt.tastingPayments == null)
@@ -244,10 +245,10 @@ namespace WineTrip
             foreach (Member member in trip.members.Where(x => x.Email != null))
             {
                 string message = MemberUpdateMessage.CreateMessage(trip, member);
-                WebBrowser webBrowser = new WebBrowser();
-                webBrowser.webBrowserCtrl.DocumentText = message;
-                webBrowser.ShowDialog();
-                //Mailer.SendHtmlMail(member.Email, member.Name, "Wine trip report", message);
+                //WebBrowser webBrowser = new WebBrowser();
+                //webBrowser.webBrowserCtrl.DocumentText = message;
+                //webBrowser.ShowDialog();
+                Mailer.SendHtmlMail(member.Email, member.Name, "Wine trip report", message);
             }
         }
 
@@ -255,6 +256,13 @@ namespace WineTrip
         {
             ExpenseForm expenseForm = new ExpenseForm(trip, SelectedEvent.selectedEvent);
             expenseForm.ShowDialog();
+        }
+
+        private void toolStripButtonCreateRoadBook_Click(object sender, EventArgs e)
+        {
+            string filename = "Road Book.pdf";
+            RoadBookPDF.Create(trip, filename);
+            Process.Start(filename);
         }
     }
 }

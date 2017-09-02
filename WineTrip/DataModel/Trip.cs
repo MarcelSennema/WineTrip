@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace WineTrip.DataModel
 {
@@ -18,6 +19,8 @@ namespace WineTrip.DataModel
         public DateTime startDate { get; set; } = DateTime.Now;
         [DataMember]
         public int numberOfDays { get; set; } = 5;
+        [DataMember]
+        public string description { get; set; }
         [DataMember]
         public Settings settings { get; set; } = new Settings();
         [DataMember]

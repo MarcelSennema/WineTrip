@@ -161,7 +161,6 @@ namespace WineTrip
 
         private void gridPanel_Paint(object sender, PaintEventArgs e)
         {
-            CalcColumnWidths();
             Rectangle rect;
             // draw the focus background
             if (currentRow != null && currentRow >= 0)
@@ -236,6 +235,9 @@ namespace WineTrip
         private void gridPanel_Resize(object sender, EventArgs e)
         {
             gridPanel.Invalidate();
+            bottomPanel.Invalidate();
+            topPanel.Invalidate();
+            CalcColumnWidths();
         }
 
         private void toolStripButtonShowPrice_Click(object sender, EventArgs e)
@@ -315,7 +317,7 @@ namespace WineTrip
                 }
                 else
                 {
-                    BottleDetailForm bottleDetailForm = new BottleDetailForm(bottle, RefreshGrid, this);
+                    BottleDetailForm bottleDetailForm = new BottleDetailForm(trip, bottle, RefreshGrid, this);
                     bottleDetailForm.Show(this);
                 }
             }
@@ -382,7 +384,6 @@ namespace WineTrip
 
         private void topPanel_Paint(object sender, PaintEventArgs e)
         {
-            CalcColumnWidths();
             e.Graphics.DrawLine(gridPen, 0, topPanel.ClientRectangle.Height-1, topPanel.ClientRectangle.Width, topPanel.ClientRectangle.Height-1);
             Rectangle rect;
             int column = 1;
@@ -404,7 +405,6 @@ namespace WineTrip
 
         private void bottomPanel_Paint(object sender, PaintEventArgs e)
         {
-            CalcColumnWidths();
             e.Graphics.DrawLine(gridPen, 0, 0, bottomPanel.ClientRectangle.Width, 0);
             Rectangle rect;
             int column = 0;
@@ -446,7 +446,7 @@ namespace WineTrip
             Bottle bottle = new Bottle();
             evnt.bottles.Add(bottle);
             CalcRowHeights(headerColumnWidth);
-            BottleDetailForm bottleDetailForm = new BottleDetailForm(bottle, RefreshGrid, this);
+            BottleDetailForm bottleDetailForm = new BottleDetailForm(trip, bottle, RefreshGrid, this);
             bottleDetailForm.ShowDialog();
         }
 
