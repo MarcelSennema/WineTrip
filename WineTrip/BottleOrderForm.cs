@@ -247,7 +247,7 @@ namespace WineTrip
 
         private void ClearOrder()
         {
-            if (currentRow != null && currentRow > 0 && currentColumn != null && currentColumn > 0)
+            if (currentRow != null && currentRow >= 0 && currentColumn != null && currentColumn > 0)
             {
                 Order order = evnt.bottles[(int)currentRow].orders.Where(x => x.member == trip.members[(int)currentColumn -1]).FirstOrDefault();
                 if (order != null)
@@ -318,7 +318,7 @@ namespace WineTrip
                 else
                 {
                     BottleDetailForm bottleDetailForm = new BottleDetailForm(trip, bottle, RefreshGrid, this);
-                    bottleDetailForm.Show(this);
+                    bottleDetailForm.ShowDialog(this);
                 }
             }
         }
@@ -395,7 +395,7 @@ namespace WineTrip
             {
                 e.Graphics.DrawLine(gridPen, left, 0, left, topPanel.ClientRectangle.Height);
                 rect = new Rectangle(left, 0, columnWidths[column], topPanel.ClientRectangle.Height);
-                e.Graphics.DrawString($"{member.Name}", memberNameFont, orderFontBrush, rect, drawFormat);
+                e.Graphics.DrawString($"{member.ShortName}", memberNameFont, orderFontBrush, rect, drawFormat);
                 left += columnWidths[column++];
             }
             e.Graphics.DrawLine(gridPen, left, 0, left, topPanel.ClientRectangle.Height);

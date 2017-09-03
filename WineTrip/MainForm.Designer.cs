@@ -37,6 +37,8 @@
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.calenderPanel = new System.Windows.Forms.TableLayoutPanel();
             this.calenderTabControl = new System.Windows.Forms.TabControl();
@@ -73,26 +75,22 @@
             this.pictureBoxTransFerTo = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.dataGridViewMembers = new System.Windows.Forms.DataGridView();
-            this.membersBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxNumberOfDays = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.membersBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.toolStripButtonOpen = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSave = new System.Windows.Forms.ToolStripButton();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonSaveAs = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonCalculate = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonCreateRoadBook = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonMemberUpdate = new System.Windows.Forms.ToolStripButton();
             this.membersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label13 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.memberGridControl = new WineTrip.MemberGridControl();
             this.tripBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.toolStripButtonCreateRoadBook = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -113,7 +111,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTransferFrom)).BeginInit();
             this.toMap.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTransFerTo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMembers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.membersBindingSource1)).BeginInit();
             this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.membersBindingSource)).BeginInit();
@@ -167,12 +164,12 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.memberGridControl);
             this.panel1.Controls.Add(this.richTextBox1);
             this.panel1.Controls.Add(this.label13);
             this.panel1.Controls.Add(this.splitContainer1);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.dataGridViewMembers);
             this.panel1.Controls.Add(this.dateTimePicker1);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.textBoxNumberOfDays);
@@ -184,6 +181,24 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1577, 734);
             this.panel1.TabIndex = 5;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tripBindingSource, "description", true));
+            this.richTextBox1.Location = new System.Drawing.Point(6, 99);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(452, 210);
+            this.richTextBox1.TabIndex = 12;
+            this.richTextBox1.Text = "";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(4, 82);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(60, 13);
+            this.label13.TabIndex = 11;
+            this.label13.Text = "Description";
             // 
             // splitContainer1
             // 
@@ -609,26 +624,6 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Members";
             // 
-            // dataGridViewMembers
-            // 
-            this.dataGridViewMembers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.dataGridViewMembers.AutoGenerateColumns = false;
-            this.dataGridViewMembers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewMembers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nameDataGridViewTextBoxColumn,
-            this.emailDataGridViewTextBoxColumn});
-            this.dataGridViewMembers.DataSource = this.membersBindingSource1;
-            this.dataGridViewMembers.Location = new System.Drawing.Point(6, 328);
-            this.dataGridViewMembers.Name = "dataGridViewMembers";
-            this.dataGridViewMembers.Size = new System.Drawing.Size(452, 401);
-            this.dataGridViewMembers.TabIndex = 3;
-            // 
-            // membersBindingSource1
-            // 
-            this.membersBindingSource1.DataMember = "members";
-            this.membersBindingSource1.DataSource = this.tripBindingSource;
-            // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.tripBindingSource, "startDate", true));
@@ -663,6 +658,11 @@
             this.label2.Size = new System.Drawing.Size(51, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "# of days";
+            // 
+            // membersBindingSource1
+            // 
+            this.membersBindingSource1.DataMember = "members";
+            this.membersBindingSource1.DataSource = this.tripBindingSource;
             // 
             // toolStripButtonOpen
             // 
@@ -724,6 +724,16 @@
             this.toolStripButtonCalculate.ToolTipText = "Calculate driving distances and times";
             this.toolStripButtonCalculate.Click += new System.EventHandler(this.toolStripButtonCalculate_Click);
             // 
+            // toolStripButtonCreateRoadBook
+            // 
+            this.toolStripButtonCreateRoadBook.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonCreateRoadBook.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCreateRoadBook.Image")));
+            this.toolStripButtonCreateRoadBook.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonCreateRoadBook.Name = "toolStripButtonCreateRoadBook";
+            this.toolStripButtonCreateRoadBook.Size = new System.Drawing.Size(102, 47);
+            this.toolStripButtonCreateRoadBook.Text = "Create road book";
+            this.toolStripButtonCreateRoadBook.Click += new System.EventHandler(this.toolStripButtonCreateRoadBook_Click);
+            // 
             // toolStripButtonMemberUpdate
             // 
             this.toolStripButtonMemberUpdate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -740,23 +750,15 @@
             this.membersBindingSource.DataMember = "Members";
             this.membersBindingSource.DataSource = this.tripBindingSource;
             // 
-            // label13
+            // memberGridControl
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(4, 82);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(60, 13);
-            this.label13.TabIndex = 11;
-            this.label13.Text = "Description";
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tripBindingSource, "description", true));
-            this.richTextBox1.Location = new System.Drawing.Point(6, 99);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(452, 210);
-            this.richTextBox1.TabIndex = 12;
-            this.richTextBox1.Text = "";
+            this.memberGridControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.memberGridControl.AutoScroll = true;
+            this.memberGridControl.Location = new System.Drawing.Point(7, 328);
+            this.memberGridControl.Name = "memberGridControl";
+            this.memberGridControl.Size = new System.Drawing.Size(451, 400);
+            this.memberGridControl.TabIndex = 0;
             // 
             // tripBindingSource
             // 
@@ -765,30 +767,6 @@
             // eventBindingSource
             // 
             this.eventBindingSource.DataSource = typeof(WineTrip.DataModel.Event);
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            this.emailDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // toolStripButtonCreateRoadBook
-            // 
-            this.toolStripButtonCreateRoadBook.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonCreateRoadBook.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCreateRoadBook.Image")));
-            this.toolStripButtonCreateRoadBook.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonCreateRoadBook.Name = "toolStripButtonCreateRoadBook";
-            this.toolStripButtonCreateRoadBook.Size = new System.Drawing.Size(102, 47);
-            this.toolStripButtonCreateRoadBook.Text = "Create road book";
-            this.toolStripButtonCreateRoadBook.Click += new System.EventHandler(this.toolStripButtonCreateRoadBook_Click);
             // 
             // MainForm
             // 
@@ -826,7 +804,6 @@
             this.toMap.ResumeLayout(false);
             this.toMap.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTransFerTo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMembers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.membersBindingSource1)).EndInit();
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
@@ -852,7 +829,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxNumberOfDays;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dataGridViewMembers;
         private System.Windows.Forms.BindingSource membersBindingSource;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -896,13 +872,12 @@
         private System.Windows.Forms.Button buttonVisitWebSite;
         private System.Windows.Forms.ToolStripButton toolStripButtonSaveAs;
         private System.Windows.Forms.Button buttonWineTasting;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
         private System.Windows.Forms.ToolStripButton toolStripButtonMemberUpdate;
         private System.Windows.Forms.Button buttonExpense;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ToolStripButton toolStripButtonCreateRoadBook;
+        private MemberGridControl memberGridControl;
     }
 }
 

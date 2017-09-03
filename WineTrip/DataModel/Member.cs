@@ -11,7 +11,11 @@ namespace WineTrip.DataModel
     public class Member
     {
         [DataMember]
-        public string Name { get; set; }
+        public string ShortName { get; set; }
+        [DataMember]
+        public string FirstName { get; set; }
+        [DataMember]
+        public string FullName { get; set; }
         [DataMember]
         public string Email { get; set; }
         [DataMember]

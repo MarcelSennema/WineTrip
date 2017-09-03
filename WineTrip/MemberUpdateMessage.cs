@@ -13,7 +13,7 @@ namespace WineTrip
         public static string CreateMessage(Trip trip, Member member)
         {
             StringBuilder htmlText = new StringBuilder();
-            htmlText.AppendLine($"<body>{Resources.StyleSheet} <p>Dear {member.Name},</p><p>Below follows an overview of purchases you made and expenses that were made on our winetrip. Your payments are included as well.</p>");
+            htmlText.AppendLine($"<body>{Resources.StyleSheet} <p>Dear {member.ShortName},</p><p>Below follows an overview of purchases you made and expenses that were made on our winetrip. Your payments are included as well.</p>");
             foreach (Event evnt in trip.events)
             {
                 if (evnt.TotalBottleCount(member) > 0)

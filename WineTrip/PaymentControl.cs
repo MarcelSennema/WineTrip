@@ -19,7 +19,7 @@ namespace WineTrip
             paymentButtonpressed += externalMethod;
             InitializeComponent();
             paymentsBindingSource.DataSource = payment;
-            buttonMember.Text = payment.member.Name;
+            buttonMember.Text = payment.member.ShortName;
         }
         private PaymentButtonPressed paymentButtonpressed;
 

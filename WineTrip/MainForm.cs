@@ -31,6 +31,7 @@ namespace WineTrip
             toolStrip.CausesValidation = true;
             tripBindingSource.DataSource = trip;
             InitCalenderTab();
+            memberGridControl.Init(trip, this);
             detailsPanel.Visible = false;
         }
 
@@ -72,8 +73,10 @@ namespace WineTrip
                     evnt.expensePayments = new ObservableCollection<Payment>();
             }
             tripBindingSource.DataSource = trip;
-
-           InitCalenderTab();
+            InitCalenderTab();
+            memberGridControl.Init(trip, this);
+            detailsPanel.Visible = false;
+            Invalidate(true);
         }
 
         private void SaveModel(string filePath)
@@ -249,7 +252,7 @@ namespace WineTrip
                 //WebBrowser webBrowser = new WebBrowser();
                 //webBrowser.webBrowserCtrl.DocumentText = message;
                 //webBrowser.ShowDialog();
-                Mailer.SendHtmlMail(member.Email, member.Name, "Wine trip report", message);
+                Mailer.SendHtmlMail(member.Email, member.ShortName, "Wine trip report", message);
             }
         }
 
@@ -265,5 +268,36 @@ namespace WineTrip
             RoadBookPDF.Create(trip, filename);
             Process.Start(filename);
         }
+
+
+        //// todo: move this to a user control
+        //private static Font memberNameFont = new Font(
+        //     new FontFamily("Arial"),
+        //     18,
+        //     FontStyle.Regular,
+        //     GraphicsUnit.Pixel);
+
+        //private static Pen gridPen { get; } = Pens.DarkGray;
+        //private static int memberRowHeight { get; } = 40;
+        //private static int deleteIconSize = 25;
+        //private static Brush memberNameBrush { get; } = Brushes.Black;
+
+        //private void panelMember_Paint(object sender, PaintEventArgs e)
+        //{
+        //    panelMember.Height = Math.Max(memberRowHeight, trip.members.Count * memberRowHeight);
+        //    StringFormat drawFormat = new StringFormat();
+        //    int top = 0;
+        //    foreach (Member member in trip.members)
+        //    {
+        //        Rectangle rect = new Rectangle(0, top, panelMember.Width, memberRowHeight);
+        //        drawFormat.Alignment = StringAlignment.Near;
+        //        drawFormat.LineAlignment = StringAlignment.Near;
+        //        e.Graphics.DrawString($"{member.ShortName}", memberNameFont, memberNameBrush, rect, drawFormat);
+        //        rect = new Rectangle(rect.Right - deleteIconSize, rect.Top, deleteIconSize, deleteIconSize);
+        //         e.Graphics.DrawLine(gridPen, rect.Left, rect.Top, rect.Right, rect.Bottom);
+        //        e.Graphics.DrawLine(gridPen, rect.Left, rect.Bottom, rect.Right, rect.Top);
+        //        top += memberRowHeight;
+        //    }
+        //}
     }
 }

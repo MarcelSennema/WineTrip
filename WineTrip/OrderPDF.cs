@@ -176,7 +176,7 @@ namespace WineTrip
             row.Cells[0].VerticalAlignment = VerticalAlignment.Bottom;
             for (int i = 0; i < trip.members.Count; i++)
             {
-                row.Cells[i + 1].AddParagraph(trip.members[i].Name);
+                row.Cells[i + 1].AddParagraph(trip.members[i].ShortName);
                 row.Cells[i + 1].Format.Alignment = ParagraphAlignment.Center;
                 row.Cells[i + 1].VerticalAlignment = VerticalAlignment.Bottom;
             }

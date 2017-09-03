@@ -67,6 +67,12 @@
     <Reference Include="UIAutomationClient" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MemberDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MemberDetailForm.Designer.cs">
+      <DependentUpon>MemberDetailForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="BottleDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,12 @@
     <Compile Include="DataModel\Transfer.cs" />
     <Compile Include="GoogleMaps.cs" />
     <Compile Include="Mailer.cs" />
+    <Compile Include="MemberGridControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MemberGridControl.Designer.cs">
+      <DependentUpon>MemberGridControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="MemberUpdateMessage.cs" />
     <Compile Include="OrderPDF.cs" />
     <Compile Include="PaymentControl.cs">
@@ -158,6 +170,9 @@
     <Compile Include="WebBrowser.Designer.cs">
       <DependentUpon>WebBrowser.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="MemberDetailForm.resx">
+      <DependentUpon>MemberDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BottleDetailForm.resx">
       <DependentUpon>BottleDetailForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -169,6 +184,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MemberGridControl.resx">
+      <DependentUpon>MemberGridControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PaymentControl.resx">
       <DependentUpon>PaymentControl.cs</DependentUpon>

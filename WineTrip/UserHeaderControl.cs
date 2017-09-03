@@ -18,7 +18,7 @@ namespace WineTrip
         {
             InitializeComponent();
             this.member = member;
-            nameLabel.Text = member.Name;
+            nameLabel.Text = member.ShortName;
         }
 
         private void nameLabel_Paint(object sender, PaintEventArgs e)

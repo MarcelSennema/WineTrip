@@ -140,7 +140,7 @@ namespace WineTrip
             paragraph.AddText($"Party members");
             paragraph.Format.Font.Size = 14;
             foreach (Member member in trip.members)
-                AddParagraph(section, "",  $"{member.Name}", 10);
+                AddParagraph(section, "",  $"{member.ShortName}", 10);
             AddRuler(section);
             foreach (Event evnt in trip.events)
                 CreateWineMakerSection(section, trip, evnt);

@@ -28,7 +28,7 @@ namespace WineTrip
             foreach (Member member in trip.members)
             {
                 CheckBox checkbox = new CheckBox();
-                checkbox.Text = member.Name;
+                checkbox.Text = member.ShortName;
                 checkbox.Tag = member;
                 checkbox.Checked = evnt.expenseParticipatingMembers.Count == 0 || evnt.expenseParticipatingMembers.Contains(member); // default to participating
                 panelMemberCheckboxes.Controls.Add(checkbox, column, row);
