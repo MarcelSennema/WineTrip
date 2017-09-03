@@ -36,7 +36,7 @@ namespace WineTrip
             }
             catch(Exception)
             {
-                System.Windows.Forms.MessageBox.Show("Can not update previes, file may be in use...");
+                System.Windows.Forms.MessageBox.Show("Can not update preview, file may be in use...");
             }
         }
 

@@ -56,6 +56,7 @@ namespace WineTrip
 
         private void LoadModel(string filePath)
         {
+            Validate(); // make sure we have everything in the model
             var serializer = new DataContractSerializer(typeof(Trip));
             using (FileStream stream = File.OpenRead(filePath))
                 trip = (Trip)serializer.ReadObject(stream);
