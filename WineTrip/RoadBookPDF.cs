@@ -13,6 +13,7 @@ using MigraDoc.DocumentObjectModel.Tables;
 using PdfSharp.Pdf;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
+using System.IO;
 
 namespace WineTrip
 {
@@ -188,11 +189,12 @@ namespace WineTrip
         {
             if (img != null)
             {
-                string imageFilename = "bitmap.bmp";
+                string imageFilename = Path.GetTempFileName();
                 img.Save(imageFilename);
                 Image image = section.AddImage(imageFilename);
                 image.Width = "6cm";
                 image.LockAspectRatio = true;
+                File.Delete(imageFilename);
             }
         }
     }

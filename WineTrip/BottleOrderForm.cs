@@ -458,7 +458,7 @@ namespace WineTrip
 
         private void toolStripButtonCreatePDF_Click(object sender, EventArgs e)
         {
-            string filename = "order.pdf";
+            string filename = $@"{ConfigurationManager.AppSettings["TempDir"]}\order.pdf";
             OrderPDF orderPDF = new OrderPDF();
             orderPDF.Create(trip, evnt, filename);
             Process.Start(filename);
@@ -466,7 +466,7 @@ namespace WineTrip
 
         private void toolStripButtonSendOrderMail_Click(object sender, EventArgs e)
         {
-            string filename = "order.pdf";
+            string filename = $@"{ConfigurationManager.AppSettings["TempDir"]}\order.pdf";
             OrderPDF orderPDF = new OrderPDF();
             orderPDF.Create(trip, evnt,filename);
             Mailer.SendMail(evnt.eMail, evnt.name, "Order", "Dear Sir or Madam,\n\nAttached you will find the order of our group.\n\nCheers,\nMarcel Sennema\n", filename);

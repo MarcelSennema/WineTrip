@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
@@ -246,13 +247,21 @@ namespace WineTrip
 
         private void toolStripButtonMemberUpdate_Click(object sender, EventArgs e)
         {
-            foreach (Member member in trip.members.Where(x => x.Email != null))
+            foreach (Member member in trip.members.Where(x => x.Email != null && x.Email != ""))
             {
-                string message = MemberUpdateMessage.CreateMessage(trip, member);
-                //WebBrowser webBrowser = new WebBrowser();
-                //webBrowser.webBrowserCtrl.DocumentText = message;
-                //webBrowser.ShowDialog();
-                Mailer.SendHtmlMail(member.Email, member.ShortName, "Wine trip report", message);
+                try
+                {
+                    string message = MemberUpdateMessage.CreateMessage(trip, member);
+                    //WebBrowser webBrowser = new WebBrowser();
+                    //webBrowser.webBrowserCtrl.DocumentText = message;
+                    //webBrowser.ShowDialog();
+
+                    Mailer.SendHtmlMail(member.Email, member.ShortName, "Wine trip report", message);
+                }
+                catch(Exception exception)
+                {
+                    MessageBox.Show($"Failed to sen email to {member.FullName}. Error: {exception.Message}");
+                }
             }
         }
 
@@ -264,7 +273,7 @@ namespace WineTrip
 
         private void toolStripButtonCreateRoadBook_Click(object sender, EventArgs e)
         {
-            string filename = "Road Book.pdf";
+            string filename = $@"{ConfigurationManager.AppSettings["TempDir"]}\Road Book.pdf";
             RoadBookPDF.Create(trip, filename);
             Process.Start(filename);
         }
